@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Design Notes — A to Z</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a28;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --accent: #7c6af7;
+    --accent2: #a998ff;
+    --text: #f0eeff;
+    --muted: #8880aa;
+    --green: #3ecf8e;
+    --amber: #f7b955;
+    --coral: #f77c6a;
+    --teal: #4ecdc4;
+    --fund: #3ecf8e;
+    --inter: #f7b955;
+    --adv: #f77c6a;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── Sidebar ── */
+  .layout { display: flex; min-height: 100vh; }
+  .sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    overflow-y: auto;
+    padding: 24px 0;
+    z-index: 100;
+  }
+  .sidebar-logo {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .sidebar-logo h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent2);
+    letter-spacing: 0.02em;
+  }
+  .sidebar-logo p { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 20px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--muted);
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .nav-item:hover { color: var(--text); background: var(--surface2); }
+  .nav-item.active {
+    color: var(--accent2);
+    border-left-color: var(--accent);
+    background: rgba(124,106,247,0.08);
+  }
+  .nav-num {
+    width: 22px; height: 22px;
+    background: var(--surface2);
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--muted);
+  }
+  .nav-item.active .nav-num { background: var(--accent); color: #fff; }
+  .nav-badge {
+    margin-left: auto;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .badge-fund { background: rgba(62,207,142,0.15); color: var(--fund); }
+  .badge-inter { background: rgba(247,185,85,0.15); color: var(--inter); }
+  .badge-adv { background: rgba(247,124,106,0.15); color: var(--adv); }
+
+  /* ── Main ── */
+  .main {
+    margin-left: 260px;
+    padding: 40px 48px;
+    max-width: 900px;
+  }
+  .section { display: none; animation: fadeIn 0.25s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: rgba(124,106,247,0.2);
+    line-height: 1;
+    margin-top: 4px;
+    min-width: 70px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .section-level {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 8px;
+    display: inline-block;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.15s;
+  }
+  .card:hover { border-color: var(--border2); }
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent2);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title::before {
+    content: '';
+    width: 4px; height: 16px;
+    background: var(--accent);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .note-list { list-style: none; }
+  .note-list li {
+    font-size: 14px;
+    color: #c4bfe8;
+    padding: 5px 0 5px 18px;
+    position: relative;
+    line-height: 1.65;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .note-list li:last-child { border-bottom: none; }
+  .note-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+    top: 7px;
+  }
+  .note-list li strong { color: var(--text); font-weight: 500; }
+  .note-list li code {
+    background: rgba(124,106,247,0.15);
+    color: var(--accent2);
+    font-size: 12px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── Arch rows ── */
+  .arch-row {
+    display: flex;
+    margin-bottom: 6px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .arch-row:last-child { margin-bottom: 0; }
+  .arch-label {
+    background: rgba(124,106,247,0.12);
+    color: var(--accent2);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 14px;
+    min-width: 110px;
+    display: flex;
+    align-items: center;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.02em;
+  }
+  .arch-val {
+    font-size: 13px;
+    color: #c4bfe8;
+    padding: 8px 14px;
+    flex: 1;
+    line-height: 1.5;
+    background: var(--surface2);
+  }
+
+  /* ── Two col ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .col-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+  }
+  .col-box-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 8px; font-family: 'Syne', sans-serif; }
+
+  /* ── Tip / Warn boxes ── */
+  .tip-box {
+    background: rgba(62,207,142,0.07);
+    border: 1px solid rgba(62,207,142,0.25);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin-top: 12px;
+  }
+  .tip-box p { font-size: 13px; color: #9eecd0; line-height: 1.55; }
+  .tip-box p strong { color: var(--green); }
+  .warn-box {
+    background: rgba(247,185,85,0.07);
+    border: 1px solid rgba(247,185,85,0.25);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin-top: 12px;
+  }
+  .warn-box p { font-size: 13px; color: #f5d799; line-height: 1.55; }
+  .warn-box p strong { color: var(--amber); }
+
+  /* ── Questions ── */
+  .q-section {
+    background: var(--surface);
+    border: 1px solid rgba(124,106,247,0.25);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-top: 20px;
+  }
+  .q-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent2);
+    margin-bottom: 14px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .q-list { list-style: none; counter-reset: qc; }
+  .q-list li {
+    font-size: 14px;
+    color: #c4bfe8;
+    padding: 9px 0 9px 34px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.55;
+    counter-increment: qc;
+  }
+  .q-list li:last-child { border-bottom: none; }
+  .q-list li::before {
+    content: counter(qc);
+    position: absolute;
+    left: 0; top: 9px;
+    width: 22px; height: 22px;
+    background: rgba(124,106,247,0.2);
+    color: var(--accent2);
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 22px;
+  }
+
+  /* ── Chips ── */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .chip {
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    background: var(--surface2);
+  }
+
+  /* ── Bottom nav ── */
+  .bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .nav-btn-bottom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-size: 14px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+  }
+  .nav-btn-bottom:hover { background: var(--surface2); border-color: var(--accent); color: var(--accent2); }
+  .nav-btn-bottom:disabled { opacity: 0.3; cursor: not-allowed; }
+  .progress-wrap { flex: 1; margin: 0 20px; }
+  .progress-label { font-size: 12px; color: var(--muted); text-align: center; margin-bottom: 6px; }
+  .progress-track { height: 3px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.3s ease; }
+
+  /* ── Mobile ── */
+  .mobile-top {
+    display: none;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mobile-top h1 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--accent2); }
+  .hamburger { background: none; border: 1px solid var(--border2); border-radius: 6px; padding: 6px 10px; color: var(--text); cursor: pointer; font-size: 16px; }
+  .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 99; }
+
+  /* ── Top Tab Bar ── */
+  .tab-bar-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-bar-wrap::-webkit-scrollbar { display: none; }
+  .tab-bar {
+    display: flex;
+    gap: 2px;
+    min-width: max-content;
+    padding: 8px 0;
+  }
+  .tab-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 7px 14px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    transition: all 0.15s;
+    white-space: nowrap;
+    min-width: 72px;
+  }
+  .tab-btn:hover { background: var(--surface2); color: var(--text); }
+  .tab-btn.active {
+    background: rgba(124,106,247,0.15);
+    color: var(--accent2);
+    border-bottom: 2px solid var(--accent);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  }
+  .tab-btn .t-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    color: inherit;
+  }
+  .tab-btn .t-label { font-size: 10px; color: inherit; opacity: 0.8; }
+
+  @media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.25s; }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-overlay.open { display: block; }
+    .mobile-top { display: flex; }
+    .main { margin-left: 0; padding: 20px 16px; }
+    .section-num { font-size: 28px; min-width: 50px; }
+    .section-title { font-size: 22px; }
+    .two-col { grid-template-columns: 1fr; }
+    .tab-bar-wrap { padding: 0 12px; }
+    .tab-btn { min-width: 60px; padding: 6px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<div class="mobile-top">
+  <h1>⚡ System Design</h1>
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <h1>⚡ System Design</h1>
+      <p>A to Z Complete Notes</p>
+    </div>
+    <div id="navList"></div>
+  </nav>
+
+  <main class="main" id="mainContent">
+    <div class="tab-bar-wrap" style="margin-left:-48px;width:calc(100% + 48px)">
+      <div class="tab-bar" id="tabBar"></div>
+    </div>
+    <div style="height:24px"></div>
+    <div id="sections"></div>
+    <div class="bottom-nav">
+      <button class="nav-btn-bottom" id="prevBtn" onclick="navigate(-1)">← Prev</button>
+      <div class="progress-wrap">
+        <div class="progress-label" id="progressLabel">1 / 15</div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:6.67%"></div></div>
+      </div>
+      <button class="nav-btn-bottom" id="nextBtn" onclick="navigate(1)">Next →</button>
+    </div>
+  </main>
+</div>
+
+<script>
+const topics = [
+  {
+    num:"01", title:"Fundamentals & Basics", level:"Fundamentals", badge:"fund",
+    html:`
+<div class="card">
+  <div class="card-title">System Design kya hota hai?</div>
+  <ul class="note-list">
+    <li><strong>Definition:</strong> System Design is the process of designing the architecture, components, databases, APIs, and infrastructure of a software system so that it can handle real-world scale efficiently. — Instagram, WhatsApp, Uber jaise</li>
+    <li><strong>Goal:</strong> Scalable, Reliable, Available, aur Maintainable system banana</li>
+    <li><strong>Interview mein kyun:</strong> Real-world problem-solving + architectural thinking test hoti hai</li>
+    <li><strong>HLD:</strong> High-Level Design is the process of defining the overall architecture and major components of a software system.— overall architecture, components, data flow</li>
+    <li><strong>LLD:</strong> Low-Level Design  is the process of designing the internal code structure, classes, objects, and logic of a system.— class diagrams, DB schema, code structure</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Key Properties (CARS)</div>
+  <div class="arch-row"><div class="arch-label">Consistency</div><div class="arch-val">means all nodes/Server in a distributed system have the same and latest data at the same time.Har server/node pe same data ho — bank balance same dikhna chahiye sab jagah</div></div>
+  <div class="arch-row"><div class="arch-label">Availability</div><div class="arch-val">System hamesha respond kare — 99.99% uptime target</div></div>
+  <div class="arch-row"><div class="arch-label">Reliability</div><div class="arch-val">Failures pe bhi kaam kare, data lose na ho</div></div>
+  <div class="arch-row"><div class="arch-label">Scalability</div><div class="arch-val">Load badhne pe handle kar sake — 10x traffic suddenly aaye toh bhi</div></div>
+  <div class="tip-box"><p><strong>CAP Theorem:</strong> Consistency, Availability, Partition Tolerance — teeno ek saath impossible. Sirf 2 choose kar sakte ho. Network partition real world mein inevitable hai.</p></div>
+</div>
+<div class="card">
+  <div class="card-title">Back-of-Envelope Estimation</div>
+  <ul class="note-list">
+    <li><strong>1 Billion users</strong> = ~1000 req/sec average, ~10,000 peak</li>
+    <li><strong>Storage:</strong> 1KB = 10³ bytes, 1MB = 10⁶, 1GB = 10⁹, 1TB = 10¹²</li>
+    <li><strong>SSD read:</strong> ~0.1ms | <strong>RAM:</strong> ~0.0001ms | <strong>Network (global):</strong> ~150ms</li>
+    <li><strong>99.9% availability</strong> = 8.76 hours downtime/year</li>
+    <li><strong>99.99% availability</strong> = 52 minutes downtime/year</li>
+    <li><strong>Latency vs Throughput:</strong> Latency = ek request kitni der mein aaye | Throughput = per second kitni requests</li>
+  </ul>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Interview Questions</div>
+  <ol class="q-list">
+    <li>CAP theorem kya hota hai? Real-world example ke saath explain karo.</li>
+    <li>Scalability aur Performance mein kya fark hai?</li>
+    <li>99.99% availability ka matlab kya hai? Calculate karo yearly downtime.</li>
+    <li>Latency vs Throughput — dono ko ek saath optimize karna kyun mushkil hai?</li>
+    <li>System Design interview mein pehla step kya hona chahiye aur kyun?</li>
+    <li>PACELC theorem kya hai? CAP se kaise alag hai?</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"02", title:"Scaling Strategies", level:"Fundamentals", badge:"fund",
+    html:`
+<div class="card">
+  <div class="card-title">Vertical Scaling (Scale Up)</div>
+  <ul class="note-list">
+    <li>Ek hi machine ko powerful banao — <strong>CPU/RAM/Disk badao</strong></li>
+    <li>Simple — code change nahi hota, no distributed complexity</li>
+    <li><strong>Hard limit:</strong> Biggest machine bhi limited hai</li>
+    <li><strong>Single Point of Failure:</strong> Machine crash → full downtime</li>
+    <li>Use case: Small-medium apps, legacy systems, databases initially</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Horizontal Scaling (Scale Out)</div>
+  <ul class="note-list">
+    <li>Zyada machines add karo — <strong>load distribute karo</strong></li>
+    <li>No hard ceiling, high availability possible</li>
+    <li>Complex — consistency, distributed state, session management</li>
+    <li>Stateless architecture zaroori hai horizontal scaling ke liye</li>
+  </ul>
+  <div class="two-col">
+    <div class="col-box">
+      <div class="col-box-title" style="color:#a998ff">Vertical</div>
+      <ul class="note-list"><li>Single server, bada aur powerful</li><li>No code changes</li><li>Downtime for upgrades</li><li>Limited ceiling</li></ul>
+    </div>
+    <div class="col-box">
+      <div class="col-box-title" style="color:#3ecf8e">Horizontal</div>
+      <ul class="note-list"><li>Many servers, distribute load</li><li>Stateless app zaroori</li><li>High availability</li><li>Complex ops</li></ul>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-title">Load Balancing Algorithms</div>
+  <div class="arch-row"><div class="arch-label">Round Robin</div><div class="arch-val">Ek-ek karke sab servers pe request dena. Simple, equal distribution.</div></div>
+  <div class="arch-row"><div class="arch-label">Least Connections</div><div class="arch-val">Jis server pe sabse kam active connections ho use dena. Better for unequal requests.</div></div>
+  <div class="arch-row"><div class="arch-label">IP Hash</div><div class="arch-val">Same user hamesha same server pe jaye. Session affinity ke liye.</div></div>
+  <div class="arch-row"><div class="arch-label">Weighted RR</div><div class="arch-val">Powerful servers ko zyada requests milein. Heterogeneous fleet ke liye.</div></div>
+  <div class="arch-row"><div class="arch-label">Random</div><div class="arch-val">Randomly server choose karo. Simple, surprisingly effective at scale.</div></div>
+  <div class="warn-box"><p><strong>Load Balancer bhi SPOF hai!</strong> Active-Passive ya Active-Active setup karo. DNS failover use karo.</p></div>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Interview Questions</div>
+  <ol class="q-list">
+    <li>Vertical vs Horizontal scaling — kab kya choose karoge? Justify karo.</li>
+    <li>Load balancer khud fail ho jaaye toh kya karoge?</li>
+    <li>Sticky sessions kya hote hain? Kab zaroori hain? Kya drawbacks hain?</li>
+    <li>L4 vs L7 load balancing mein kya fark hai?</li>
+    <li>Auto-scaling kaise kaam karta hai? Kab scale-in vs scale-out trigger hoga?</li>
+    <li>Stateful application ko horizontally scale karna kyun mushkil hai?</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"03", title:"Databases — SQL vs NoSQL", level:"Fundamentals", badge:"fund",
+    html:`
+<div class="card">
+  <div class="card-title">SQL (Relational Databases)</div>
+  <ul class="note-list">
+    <li><strong>ACID:</strong> Atomicity, Consistency, Isolation, Durability — transactions 100% safe</li>
+    <li>Fixed schema, tables, foreign keys, JOINs</li>
+    <li>Best for: Financial systems, e-commerce, structured relational data</li>
+    <li><strong>Examples:</strong> MySQL, PostgreSQL, Oracle, MS SQL Server</li>
+    <li>Vertical scaling easy, horizontal scaling hard (read replicas, sharding complex)</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">NoSQL Types</div>
+  <div class="arch-row"><div class="arch-label">Document</div><div class="arch-val">MongoDB, CouchDB — JSON documents, flexible schema. Blog posts, user profiles, catalogs.</div></div>
+  <div class="arch-row"><div class="arch-label">Key-Value</div><div class="arch-val">Redis, DynamoDB — ultra-fast, simple. Cache, sessions, shopping cart, counters.</div></div>
+  <div class="arch-row"><div class="arch-label">Wide Column</div><div class="arch-val">Cassandra, HBase — time-series, IoT, analytics. Write-heavy workloads.</div></div>
+  <div class="arch-row"><div class="arch-label">Graph</div><div class="arch-val">Neo4j, Amazon Neptune — relationships first. Social networks, fraud detection, recommendations.</div></div>
+  <div class="arch-row"><div class="arch-label">Time Series</div><div class="arch-val">InfluxDB, TimescaleDB — metrics, monitoring, sensor data.</div></div>
+  <div class="tip-box"><p><strong>BASE (NoSQL):</strong> Basically Available, Soft state, Eventually consistent. SQL ki tarah strict guarantees nahi deta but much better scale karta hai.</p></div>
+</div>
+<div class="card">
+  <div class="card-title">Replication & Sharding</div>
+  <ul class="note-list">
+    <li><strong>Master-Slave (Read Replica):</strong> Master writes, replicas reads serve karte hain. Read scale up hota hai.</li>
+    <li><strong>Master-Master:</strong> Dono read/write — conflict resolution complex hai</li>
+    <li><strong>Horizontal Sharding:</strong> Data partitions mein baanto — User A-M → DB1, N-Z → DB2</li>
+    <li><strong>Shard Key choice:</strong> Hotspot avoid karo — user_id better than created_at</li>
+    <li><strong>Consistent Hashing:</strong> Shard add/remove pe minimum data movement</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Indexing</div>
+  <ul class="note-list">
+    <li>Without index: O(n) full table scan | With index: O(log n) B-tree search</li>
+    <li><strong>Composite index:</strong> (user_id, created_at) — column order matters!</li>
+    <li><strong>Covering index:</strong> Query ke sare columns index mein hain — no table lookup</li>
+    <li>Index tradeoff: Reads fast, Writes slow (index bhi update hota hai)</li>
+  </ul>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Interview Questions</div>
+  <ol class="q-list">
+    <li>SQL vs NoSQL — kab kya choose karoge? Real scenario deke justify karo.</li>
+    <li>Database sharding kya hai? Hotspot problem kaise solve karoge?</li>
+    <li>ACID vs BASE kya hote hain? Kab ek acceptable hai?</li>
+    <li>Read replica setup mein replication lag kaise handle karoge?</li>
+    <li>N+1 query problem kya hai? Kaise detect aur fix karoge?</li>
+    <li>Normalization vs Denormalization — kab kya?</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"04", title:"Caching", level:"Intermediate", badge:"inter",
+    html:`
+<div class="card">
+  <div class="card-title">Caching Fundamentals</div>
+  <ul class="note-list">
+    <li>Frequently accessed data ko <strong>fast memory</strong> (RAM) mein store karo</li>
+    <li>DB hits reduce → Latency kam → Cost save → Performance boost</li>
+    <li><strong>Cache Hit Ratio:</strong> Hits / (Hits + Misses) — 90%+ target karo</li>
+    <li><strong>Pareto principle:</strong> 80% requests sirf 20% data access karti hain</li>
+    <li><strong>Cache levels:</strong> Browser → CDN → Load Balancer → App → DB</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Cache Writing Strategies</div>
+  <div class="arch-row"><div class="arch-label">Cache Aside</div><div class="arch-val">App cache check kare. Miss hone pe DB se lo aur cache mein store karo. Sabse common. Lazy loading.</div></div>
+  <div class="arch-row"><div class="arch-label">Write Through</div><div class="arch-val">Write cache aur DB dono mein simultaneously. Consistent, thoda slow writes.</div></div>
+  <div class="arch-row"><div class="arch-label">Write Back</div><div class="arch-val">Pehle sirf cache mein likho, async DB mein baad mein. Fastest, data loss risk on crash.</div></div>
+  <div class="arch-row"><div class="arch-label">Read Through</div><div class="arch-val">Cache library automatically DB se load kare miss pe. App ko pata nahi.</div></div>
+  <div class="arch-row"><div class="arch-label">Refresh Ahead</div><div class="arch-val">Expiry se pehle proactively refresh karo. Hot data ke liye.</div></div>
+</div>
+<div class="card">
+  <div class="card-title">Eviction Policies</div>
+  <ul class="note-list">
+    <li><strong>LRU (Least Recently Used):</strong> Sabse pehle jo use na hua ho hataao — most popular</li>
+    <li><strong>LFU (Least Frequently Used):</strong> Sabse kam baar access hua data hataao</li>
+    <li><strong>FIFO:</strong> Pehle aaya pehle gaya — simple but not always smart</li>
+    <li><strong>TTL (Time to Live):</strong> Fixed time baad expire — predictable, simple</li>
+    <li><strong>Random:</strong> Random eviction — surprisingly effective, cache pollution avoid</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Cache Problems & Solutions</div>
+  <div class="arch-row"><div class="arch-label">Cache Stampede</div><div class="arch-val">Bahut requests ek saath miss → DB overload. Fix: Mutex lock, probabilistic early refresh.</div></div>
+  <div class="arch-row"><div class="arch-label">Cache Penetration</div><div class="arch-val">Data DB mein bhi nahi, hamesha miss. Fix: Bloom filter, null value cache karo.</div></div>
+  <div class="arch-row"><div class="arch-label">Cache Avalanche</div><div class="arch-val">Saara cache ek saath expire. Fix: Random TTL jitter, staggered expiry.</div></div>
+  <div class="arch-row"><div class="arch-label">Hot Key Problem</div><div class="arch-val">Ek key pe bahut load — Justin Bieber problem. Fix: Local cache + replication.</div></div>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Interview Questions</div>
+  <ol class="q-list">
+    <li>Cache invalidation ke strategies kya hain? Kab kya use karoge?</li>
+    <li>Redis vs Memcached — detailed comparison karo.</li>
+    <li>Cache stampede kaise prevent karoge? Mutex approach ke drawbacks?</li>
+    <li>Distributed caching mein consistent hashing kaise kaam karta hai?</li>
+    <li>CDN bhi ek cache hai — application cache se kaise different?</li>
+    <li>Write-through aur write-back mein consistency kaise maintain karoge?</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"05", title:"CDN & Networking", level:"Fundamentals", badge:"fund",
+    html:`
+<div class="card">
+  <div class="card-title">CDN (Content Delivery Network)</div>
+  <ul class="note-list">
+    <li>Static content (images, videos, JS, CSS) ko <strong>geographically nearby server</strong> se serve karo</li>
+    <li>Mumbai user → Mumbai CDN node, US server se nahi</li>
+    <li>Latency drastically reduce, origin server load kam</li>
+    <li><strong>Push CDN:</strong> Content manually upload karo CDN pe. Predictable files ke liye.</li>
+    <li><strong>Pull CDN:</strong> First request pe origin se fetch, baad mein cache. Dynamic content ke liye.</li>
+    <li><strong>Examples:</strong> Cloudflare, AWS CloudFront, Akamai, Fastly</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">HTTP Protocol Evolution</div>
+  <div class="arch-row"><div class="arch-label">HTTP/1.1</div><div class="arch-val">Sequential requests, head-of-line blocking. 6 connections per origin.</div></div>
+  <div class="arch-row"><div class="arch-label">HTTP/2</div><div class="arch-val">Multiplexing — multiple streams ek TCP connection mein. Header compression.</div></div>
+  <div class="arch-row"><div class="arch-label">HTTP/3</div><div class="arch-val">QUIC protocol (UDP based) — faster connection, no TCP handshake overhead.</div></div>
+  <div class="arch-row"><div class="arch-label">WebSocket</div><div class="arch-val">Bidirectional persistent connection. Chat, live feeds, gaming ke liye.</div></div>
+  <div class="arch-row"><div class="arch-label">SSE</div><div class="arch-val">Server-Sent Events — one-way server push. Live notifications, stock prices.</div></div>
+  <div class="arch-row"><div class="arch-label">gRPC</div><div class="arch-val">Binary Protobuf, HTTP/2 based. Microservices communication ke liye ideal.</div></div>
+</div>
+<div class="card">
+  <div class="card-title">API Design Concepts</div>
+  <ul class="note-list">
+    <li><strong>REST:</strong> Stateless, HTTP methods, resource-based URLs — most common</li>
+    <li><strong>GraphQL:</strong> Client decides what data — over/under-fetching solve, complex queries</li>
+    <li><strong>gRPC:</strong> Strongly typed, binary, streaming support — internal microservices</li>
+    <li><strong>API Gateway:</strong> Auth, rate limiting, routing, logging — single entry point</li>
+    <li><strong>Idempotency:</strong> Same request multiple times → same result. PUT, DELETE idempotent hote hain.</li>
+  </ul>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Interview Questions</div>
+  <ol class="q-list">
+    <li>REST vs GraphQL vs gRPC — kab kya choose karoge?</li>
+    <li>WebSocket vs Long Polling vs SSE — detailed comparison.</li>
+    <li>HTTPS kaise kaam karta hai? TLS handshake steps explain karo.</li>
+    <li>API Gateway aur Load Balancer mein kya fark hai?</li>
+    <li>CDN use karne ke kya drawbacks ho sakte hain?</li>
+    <li>DNS resolution ka full flow explain karo — browser se IP tak.</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"06", title:"Message Queues & Events", level:"Intermediate", badge:"inter",
+    html:`
+<div class="card">
+  <div class="card-title">Message Queue Kya Hai?</div>
+  <ul class="note-list">
+    <li>Producer message deta hai queue mein, Consumer independently baad mein process karta hai</li>
+    <li><strong>Decoupling:</strong> Producer aur Consumer independent — ek fail ho toh dusra theek rahega</li>
+    <li><strong>Buffer:</strong> Traffic spikes absorb karo — peak load smooth out</li>
+    <li><strong>Async processing:</strong> Order aaya → queue → email baad mein bhejo</li>
+    <li>Reliability: Messages persist karo — consumer crash pe data lost nahi hoga</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Popular Tools Comparison</div>
+  <div class="arch-row"><div class="arch-label">Apache Kafka</div><div class="arch-val">High throughput, ordered, persistent, replay possible. Event streaming, analytics, audit logs. LinkedIn ne banaya.</div></div>
+  <div class="arch-row"><div class="arch-label">RabbitMQ</div><div class="arch-val">AMQP protocol, complex routing patterns. Traditional task queues, work distribution.</div></div>
+  <div class="arch-row"><div class="arch-label">AWS SQS</div><div class="arch-val">Managed, auto-scaling, serverless friendly. Simple job queues.</div></div>
+  <div class="arch-row"><div class="arch-label">AWS SNS</div><div class="arch-val">Pub/Sub, fan-out notifications. Multiple subscribers ek message pe.</div></div>
+  <div class="arch-row"><div class="arch-label">Redis Streams</div><div class="arch-val">Lightweight, real-time. Simple pub/sub, leaderboards.</div></div>
+</div>
+<div class="card">
+  <div class="card-title">Important Patterns</div>
+  <ul class="note-list">
+    <li><strong>Dead Letter Queue (DLQ):</strong> Failed messages ko alag queue mein — debug karo, retry karo</li>
+    <li><strong>Retry with Exponential Backoff:</strong> 1s → 2s → 4s → 8s + random jitter</li>
+    <li><strong>Idempotent Consumer:</strong> Same message ek se zyada baar aaye toh bhi safe</li>
+    <li><strong>Outbox Pattern:</strong> DB transaction aur message publish atomically — dual write avoid</li>
+    <li><strong>Consumer Groups (Kafka):</strong> Multiple consumers ek topic partitions parallel process karein</li>
+  </ul>
+  <div class="tip-box"><p><strong>Delivery Guarantees:</strong> At-most-once (loss possible) vs At-least-once (duplicates possible) vs Exactly-once (hardest, expensive). Usually at-least-once + idempotent consumer use karo.</p></div>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Interview Questions</div>
+  <ol class="q-list">
+    <li>Kafka vs RabbitMQ — kab kya choose karoge? Key differences?</li>
+    <li>Message queue use karne ke benefits kya hain? Trade-offs kya hain?</li>
+    <li>Kafka mein message ordering kaise guarantee karte hain?</li>
+    <li>Exactly-once delivery kaise achieve karte hain? Kyun itna mushkil hai?</li>
+    <li>Circuit breaker pattern kya hai? Message queue ke saath kaise use karein?</li>
+    <li>Event-driven architecture ke pros aur cons kya hain?</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"07", title:"Microservices Architecture", level:"Intermediate", badge:"inter",
+    html:`
+<div class="card">
+  <div class="card-title">Monolith vs Microservices</div>
+  <div class="two-col">
+    <div class="col-box">
+      <div class="col-box-title">Monolith</div>
+      <ul class="note-list">
+        <li>Simple to start and develop</li>
+        <li>Single deployment</li>
+        <li>All modules tightly coupled</li>
+        <li>Scale sab kuch ek saath</li>
+        <li>One tech stack</li>
+        <li>Best for small teams</li>
+      </ul>
+    </div>
+    <div class="col-box">
+      <div class="col-box-title" style="color:#a998ff">Microservices</div>
+      <ul class="note-list">
+        <li>Independent deployment</li>
+        <li>Scale only what's needed</li>
+        <li>Tech freedom per service</li>
+        <li>Loose coupling</li>
+        <li>Complex distributed system</li>
+        <li>Needs mature DevOps</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-title">Key Microservices Patterns</div>
+  <div class="arch-row"><div class="arch-label">API Gateway</div><div class="arch-val">Single entry point. Auth, rate limiting, routing, SSL termination handle kare.</div></div>
+  <div class="arch-row"><div class="arch-label">Service Discovery</div><div class="arch-val">Services dynamically register aur discover karein — Consul, Eureka, etcd.</div></div>
+  <div class="arch-row"><div class="arch-label">Circuit Breaker</div><div class="arch-val">Downstream service fail ho toh cascade rokdo. Hystrix, Resilience4j.</div></div>
+  <div class="arch-row"><div class="arch-label">Saga Pattern</div><div class="arch-val">Distributed transactions — Choreography (events) vs Orchestration (central coordinator).</div></div>
+  <div class="arch-row"><div class="arch-label">Sidecar</div><div class="arch-val">Common concerns (logging, auth, proxy) ko alag process mein dalo. Service Mesh.</div></div>
+  <div class="arch-row"><div class="arch-label">BFF</div><div class="arch-val">Backend for Frontend — mobile aur web ke liye alag API layer.</div></div>
+</div>
+<div class="card">
+  <div class="card-title">Challenges</div>
+  <ul class="note-list">
+    <li><strong>Distributed Transactions:</strong> 2PC complex, Saga pattern se handle karo</li>
+    <li><strong>Data Consistency:</strong> Each service apna DB rakhta hai — eventual consistency</li>
+    <li><strong>Network Latency:</strong> In-process calls → network calls, latency add hoti hai</li>
+    <li><strong>Observability:</strong> Distributed tracing zaroori — Jaeger, Zipkin, OpenTelemetry</li>
+    <li><strong>Testing:</strong> Contract testing, integration testing complex ho jaati hai</li>
+  </ul>
+  <div class="warn-box"><p><strong>Warning:</strong> Microservices ke liye mature team aur DevOps infrastructure chahiye. Pehle monolith banao, scale hone pe phir split karo — Strangler Fig pattern use karo.</p></div>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Interview Questions</div>
+  <ol class="q-list">
+    <li>Microservices mein distributed transactions kaise handle karoge?</li>
+    <li>Service mesh kya hota hai? Istio ka architecture explain karo.</li>
+    <li>Kab microservices se monolith pe wapas aana chahiye?</li>
+    <li>12-factor app principles kya hain? Microservices se connection?</li>
+    <li>Microservices testing strategy kya hoti hai? Contract testing kya hai?</li>
+    <li>Choreography vs Orchestration saga — kab kya prefer karoge?</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"08", title:"Consistent Hashing", level:"Intermediate", badge:"inter",
+    html:`
+<div class="card">
+  <div class="card-title">Problem with Simple Hashing</div>
+  <ul class="note-list">
+    <li>5 servers hain: server = <code>hash(key) % 5</code></li>
+    <li>6th server add karo → formula changes to <code>% 6</code></li>
+    <li>Almost <strong>saari keys remap</strong> ho jaati hain → cache invalidation → DB overload</li>
+    <li>Production mein ye disaster hai — millions of cache misses ek saath</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Consistent Hashing Solution</div>
+  <ul class="note-list">
+    <li>Servers ko ek <strong>circular ring</strong> pe hash karo (0 to 2³² - 1)</li>
+    <li>Key ko bhi same ring pe hash karo</li>
+    <li>Clockwise direction mein <strong>pehla server</strong> use karo</li>
+    <li>Server add/remove pe: sirf us server ke <strong>adjacent keys move</strong> hoti hain</li>
+    <li>Average sirf <strong>k/n keys move</strong> hoti hain (k=total keys, n=servers)</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Virtual Nodes</div>
+  <ul class="note-list">
+    <li>Problem: Ek server fail ho toh uska load sab ek neighbor pe jata hai</li>
+    <li><strong>Solution:</strong> Ek physical server ko ring pe multiple positions dedo (virtual nodes)</li>
+    <li>Fail hone pe load <strong>evenly distribute</strong> ho jaata hai saare baaki servers pe</li>
+    <li>Heterogeneous servers: Powerful server ko zyada virtual nodes dedo</li>
+  </ul>
+  <div class="tip-box"><p><strong>Used in production:</strong> Apache Cassandra, Amazon DynamoDB, Memcached (ketama), Redis Cluster, Riak — sab consistent hashing variants use karte hain.</p></div>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Interview Questions</div>
+  <ol class="q-list">
+    <li>Consistent hashing kaise kaam karta hai? Normal modulo hashing se better kyun?</li>
+    <li>Virtual nodes kyon use karte hain? Kya problem solve karte hain?</li>
+    <li>Cassandra mein data distribution aur replication kaise hoti hai?</li>
+    <li>Hot spot problem consistent hashing mein kaise aati hai? Fix?</li>
+    <li>Consistent hashing ko LLD level pe implement karo — data structures kya use karoge?</li>
+    <li>Rendezvous hashing kya hai? Consistent hashing se compare karo.</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"09", title:"Rate Limiting", level:"Intermediate", badge:"inter",
+    html:`
+<div class="card">
+  <div class="card-title">Rate Limiting Kya Hai?</div>
+  <ul class="note-list">
+    <li>Ek user/IP/API key ko limited requests allow karna — "100 req/min per user"</li>
+    <li><strong>Purposes:</strong> DDoS protection, fair resource sharing, cost control, prevent abuse</li>
+    <li>Response: <strong>HTTP 429 Too Many Requests</strong></li>
+    <li>Headers: <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>, <code>X-RateLimit-Reset</code></li>
+    <li>Implement at: API Gateway (preferred), Reverse Proxy (Nginx), Application level</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Rate Limiting Algorithms</div>
+  <div class="arch-row"><div class="arch-label">Token Bucket</div><div class="arch-val">Bucket mein tokens hain, refill hote rehte hain. Har request ek token use kare. Burst allow karta hai. AWS/Stripe use karte hain.</div></div>
+  <div class="arch-row"><div class="arch-label">Leaky Bucket</div><div class="arch-val">Queue mein dalo, fixed rate se output karo. Smooth traffic, burst buffer. DDoS protection better.</div></div>
+  <div class="arch-row"><div class="arch-label">Fixed Window</div><div class="arch-val">Har 1 min mein reset. Simple but boundary pe double requests possible (window edge attack).</div></div>
+  <div class="arch-row"><div class="arch-label">Sliding Window Log</div><div class="arch-val">Exact timestamps store karo. Accurate, but memory expensive at high scale.</div></div>
+  <div class="arch-row"><div class="arch-label">Sliding Window Counter</div><div class="arch-val">Previous + current window interpolate karo. Good balance of accuracy and memory.</div></div>
+</div>
+<div class="card">
+  <div class="card-title">Distributed Rate Limiting</div>
+  <ul class="note-list">
+    <li>Multiple app servers hain → centralized counter chahiye</li>
+    <li><strong>Redis INCR + EXPIRE</strong> — atomic, fast, distributed</li>
+    <li><strong>Redis Lua scripts</strong> — multiple operations atomically (check + increment)</li>
+    <li>Race condition avoid karo — Redis single threaded hai, atomic ops safe</li>
+    <li>Alternative: API Gateway (Kong, AWS API GW) built-in rate limiting use karo</li>
+  </ul>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Interview Questions</div>
+  <ol class="q-list">
+    <li>Token bucket vs leaky bucket — detailed difference aur use cases.</li>
+    <li>Distributed environment mein rate limiting ka exact implementation karo.</li>
+    <li>Rate limiting bypass karne ke techniques kya hain? Kaise rokoge?</li>
+    <li>Different users ke liye different tiers kaise implement karoge (Free vs Pro)?</li>
+    <li>Fixed window algorithm ka edge case attack kya hai? Sliding window kaise solve karta hai?</li>
+    <li>1 million requests/second rate limit system design karo.</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"10", title:"Storage Systems", level:"Intermediate", badge:"inter",
+    html:`
+<div class="card">
+  <div class="card-title">Storage Types</div>
+  <div class="arch-row"><div class="arch-label">Block Storage</div><div class="arch-val">Raw blocks, low latency. OS aur DBs use karte hain. AWS EBS, GCP Persistent Disk.</div></div>
+  <div class="arch-row"><div class="arch-label">File Storage</div><div class="arch-val">File system hierarchy, shared access. AWS EFS, NFS. Multiple EC2 instances share kar sakti hain.</div></div>
+  <div class="arch-row"><div class="arch-label">Object Storage</div><div class="arch-val">Flat key-value, infinite scale, cheap. AWS S3, GCS. Photos, videos, backups, ML datasets.</div></div>
+  <div class="arch-row"><div class="arch-label">In-Memory</div><div class="arch-val">RAM-based, ultra fast. Redis, Memcached. Cache, sessions, real-time data.</div></div>
+</div>
+<div class="card">
+  <div class="card-title">AWS S3 Deep Dive</div>
+  <ul class="note-list">
+    <li>11 nines durability (99.999999999%) — data loss virtually impossible</li>
+    <li><strong>Pre-signed URLs:</strong> Temporary direct upload/download access without server</li>
+    <li><strong>Storage classes:</strong> Standard → Standard-IA → Glacier Instant → Glacier Deep Archive</li>
+    <li><strong>Multipart Upload:</strong> Large files ko chunks mein upload karo (> 5GB recommended)</li>
+    <li>Versioning, lifecycle rules, cross-region replication, event notifications</li>
+    <li><strong>Transfer Acceleration:</strong> CloudFront edge pe upload karo → AWS backbone pe transfer</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Blob Storage Design Patterns</div>
+  <ul class="note-list">
+    <li><strong>Direct Upload Pattern:</strong> Client → S3 directly (pre-signed URL) — server load skip</li>
+    <li><strong>CDN Integration:</strong> S3 + CloudFront — global fast delivery</li>
+    <li><strong>Processing Pipeline:</strong> Upload → S3 → Lambda trigger → transcoding → processed S3</li>
+    <li><strong>Chunked Upload:</strong> Large files resume support ke liye — YouTube video upload</li>
+  </ul>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Interview Questions</div>
+  <ol class="q-list">
+    <li>1 billion user photo storage system design karo.</li>
+    <li>Pre-signed URL kya hota hai? Security implications kya hain?</li>
+    <li>Object storage vs block storage — kab kya? Pricing difference?</li>
+    <li>Large file upload (10GB video) efficiently kaise handle karoge?</li>
+    <li>S3 lifecycle policies kab zaroori hain? Cost optimization kaise karoge?</li>
+    <li>Google Drive jaisa system design karo — file sync, conflict resolution?</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"11", title:"Search & Elasticsearch", level:"Intermediate", badge:"inter",
+    html:`
+<div class="card">
+  <div class="card-title">Why Not SQL for Search?</div>
+  <ul class="note-list">
+    <li>SQL <code>LIKE '%query%'</code> — full table scan, O(n), no ranking</li>
+    <li>No fuzzy matching — typos nahi handle karta</li>
+    <li>No relevance scoring — kaunsa result zyada important hai?</li>
+    <li>No stemming — "running" search mein "run" nahi milega</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Inverted Index — The Core</div>
+  <ul class="note-list">
+    <li>Forward index: Document → Words | Inverted index: <strong>Word → Documents</strong></li>
+    <li>"system" → [doc1, doc3, doc7] | "design" → [doc1, doc4, doc7]</li>
+    <li>Query "system design" → intersection → [doc1, doc7] → rank by relevance</li>
+    <li><strong>TF-IDF:</strong> Term Frequency × Inverse Document Frequency = relevance score</li>
+    <li><strong>BM25:</strong> Better modern ranking algorithm — Elasticsearch default</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Elasticsearch Architecture</div>
+  <ul class="note-list">
+    <li><strong>Cluster → Nodes → Indices → Shards → Documents</strong></li>
+    <li>Primary shard + replica shards — fault tolerance</li>
+    <li>Near-real-time: Write → in-memory buffer → refresh (1 sec) → searchable</li>
+    <li><strong>Tokenization:</strong> Text → tokens (lowercase, remove stopwords, stem)</li>
+    <li><strong>Analyzer:</strong> Custom tokenizers, filters for different languages</li>
+  </ul>
+  <div class="tip-box"><p><strong>Common Architecture:</strong> Primary DB (MySQL/Postgres) + Elasticsearch for search. CDC (Change Data Capture) ya Debezium se sync karo. Don't use ES as primary DB.</p></div>
+</div>
+<div class="card">
+  <div class="card-title">Autocomplete Design</div>
+  <ul class="note-list">
+    <li>Trie data structure — prefix search O(prefix length)</li>
+    <li>Elasticsearch: <code>completion</code> suggester type use karo</li>
+    <li>Top-K suggestions — frequency based ranking</li>
+    <li>Personalization: User history weight dena</li>
+  </ul>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Interview Questions</div>
+  <ol class="q-list">
+    <li>Twitter search system design karo — millions of tweets per day.</li>
+    <li>Inverted index kya hota hai? Kaise build aur query karte hain?</li>
+    <li>Autocomplete feature design karo — Trie vs Elasticsearch?</li>
+    <li>Elasticsearch vs SQL full-text search — kab kya?</li>
+    <li>Search results ka ranking kaise improve karoge?</li>
+    <li>Multi-language search kaise handle karoge?</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"12", title:"Distributed Systems", level:"Advanced", badge:"adv",
+    html:`
+<div class="card">
+  <div class="card-title">Core Distributed Concepts</div>
+  <div class="arch-row"><div class="arch-label">Consensus</div><div class="arch-val">Distributed nodes agree kaise karein. Raft (understandable), Paxos (original, complex).</div></div>
+  <div class="arch-row"><div class="arch-label">Leader Election</div><div class="arch-val">Ek node leader bane. ZooKeeper, etcd use hota hai. Raft built-in leader election.</div></div>
+  <div class="arch-row"><div class="arch-label">Vector Clocks</div><div class="arch-val">Events ka causal order track karo without synchronized global clock.</div></div>
+  <div class="arch-row"><div class="arch-label">Gossip Protocol</div><div class="arch-val">Nodes epidemic style info spread karte hain. Cassandra, DynamoDB use karte hain.</div></div>
+  <div class="arch-row"><div class="arch-label">Quorum</div><div class="arch-val">N nodes mein majority (N/2 + 1) se agree karo. Read + Write quorum.</div></div>
+</div>
+<div class="card">
+  <div class="card-title">Consistency Models</div>
+  <ul class="note-list">
+    <li><strong>Strong Consistency:</strong> Write ke immediately baad read latest data dega — slow, banks use</li>
+    <li><strong>Eventual Consistency:</strong> Eventually sab nodes agree karenge — fast, DNS, social media</li>
+    <li><strong>Read-Your-Writes:</strong> Apna likhaa khud padh sako — UX ke liye zaroori</li>
+    <li><strong>Monotonic Reads:</strong> Ek baar new data padh liya toh purana nahi aayega</li>
+    <li><strong>Causal Consistency:</strong> Causally related events ka order maintain ho</li>
+    <li><strong>Linearizability:</strong> Strongest form of consistency — single machine jaisa behave</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Fault Tolerance</div>
+  <ul class="note-list">
+    <li><strong>Replication Factor 3:</strong> Data 3 copies — 2 fail ho toh bhi data safe</li>
+    <li><strong>Split Brain:</strong> Network partition → dono sides leader ban jaate hain → dangerous!</li>
+    <li>Fix: Fencing tokens, STONITH (Shoot The Other Node In The Head)</li>
+    <li><strong>Byzantine Fault:</strong> Node galat/malicious data deta hai — BFT algorithms</li>
+    <li><strong>Heartbeat + Timeout:</strong> Node alive hai ya nahi detect karo</li>
+  </ul>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Interview Questions</div>
+  <ol class="q-list">
+    <li>Raft vs Paxos consensus algorithm — high-level comparison karo.</li>
+    <li>Split brain problem kya hai? Kaise detect aur resolve karoge?</li>
+    <li>Eventual consistency acceptable kab hai? Real example do.</li>
+    <li>Two Generals Problem kya hai? Distributed systems mein kya lesson hai?</li>
+    <li>Vector clocks kaise kaam karte hain? Amazon Dynamo ne kaise use kiya?</li>
+    <li>Network partition ke time available rehna better hai ya consistent?</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"13", title:"Design Patterns", level:"Advanced", badge:"adv",
+    html:`
+<div class="card">
+  <div class="card-title">Architectural Patterns</div>
+  <div class="arch-row"><div class="arch-label">CQRS</div><div class="arch-val">Command Query Responsibility Segregation — reads aur writes alag models/DBs. Read scale alag, write alag.</div></div>
+  <div class="arch-row"><div class="arch-label">Event Sourcing</div><div class="arch-val">Current state ke bajay events store karo. Full audit trail, replay, time-travel debugging.</div></div>
+  <div class="arch-row"><div class="arch-label">Outbox Pattern</div><div class="arch-val">DB transaction aur message atomically — Outbox table + CDC/polling worker.</div></div>
+  <div class="arch-row"><div class="arch-label">Strangler Fig</div><div class="arch-val">Monolith gradually microservices mein migrate karo — route by route.</div></div>
+  <div class="arch-row"><div class="arch-label">Bulkhead</div><div class="arch-val">Resources isolate karo — ek service ki failure baaki ko affect na kare. Thread pools separate.</div></div>
+  <div class="arch-row"><div class="arch-label">Anti-Corruption Layer</div><div class="arch-val">Legacy system ka interface wrap karo — clean separation.</div></div>
+</div>
+<div class="card">
+  <div class="card-title">Resilience Patterns</div>
+  <ul class="note-list">
+    <li><strong>Circuit Breaker States:</strong> Closed (normal) → Open (failing) → Half-Open (testing)</li>
+    <li><strong>Retry with Jitter:</strong> Random delay add karo — thundering herd avoid karo</li>
+    <li><strong>Timeout:</strong> Har external call pe timeout — hanging requests rokne ke liye</li>
+    <li><strong>Fallback:</strong> Service fail → cached data/default response dedo</li>
+    <li><strong>Bulkhead:</strong> Connection pools isolate karo per dependency</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Data Patterns</div>
+  <ul class="note-list">
+    <li><strong>Write-Ahead Log (WAL):</strong> Changes pehle log mein — crash recovery safe</li>
+    <li><strong>Change Data Capture (CDC):</strong> DB changes ko stream karo — Debezium, Kafka Connect</li>
+    <li><strong>Read-Through / Write-Through:</strong> Cache aur DB sync patterns</li>
+    <li><strong>Materialized View:</strong> Pre-computed query results store karo — fast reads</li>
+  </ul>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Interview Questions</div>
+  <ol class="q-list">
+    <li>CQRS kab use karein? Implementation complexity worth hai kab?</li>
+    <li>Event sourcing vs traditional CRUD — pros/cons aur kab switch karein?</li>
+    <li>Circuit breaker ke teen states detail mein explain karo.</li>
+    <li>Outbox pattern dual-write problem kaise solve karta hai? Alternative kya hai?</li>
+    <li>Saga orchestration vs choreography — real example ke saath compare karo.</li>
+    <li>Change Data Capture kya hai? Elasticsearch sync ke liye kaise use karein?</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"14", title:"Classic System Designs", level:"Advanced", badge:"adv",
+    html:`
+<div class="card">
+  <div class="card-title">Instagram / Photo Sharing</div>
+  <ul class="note-list">
+    <li><strong>Upload Flow:</strong> Client → API Server → S3 (store) → CDN (serve)</li>
+    <li><strong>Feed Generation — Fanout on Write:</strong> Post pe saare followers ke feeds update. Small accounts ke liye best.</li>
+    <li><strong>Fanout on Read:</strong> Read time pe generate karo. Celebrity accounts (millions of followers) ke liye.</li>
+    <li><strong>Hybrid:</strong> Normal users = write fanout | Celebrities = read fanout</li>
+    <li>Timeline: Redis sorted sets, score = timestamp, TTL lagao</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">WhatsApp / Chat System</div>
+  <ul class="note-list">
+    <li><strong>WebSocket</strong> connections per user — bidirectional real-time</li>
+    <li>Message status: Sent (server pe) → Delivered (recipient device pe) → Read (opened)</li>
+    <li>Offline users: Messages store karo → push notification → deliver when online</li>
+    <li><strong>Group chat:</strong> Message ek baar store, fan-out to members</li>
+    <li>End-to-End Encryption: Signal Protocol (Double Ratchet Algorithm)</li>
+    <li>Presence: Last seen — Redis pe store karo, periodic update</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Uber / Ride Sharing</div>
+  <ul class="note-list">
+    <li>Driver location: Every 4 sec update → <strong>Geohash</strong> / QuadTree for spatial indexing</li>
+    <li>Matching: Nearby drivers dhundho → rank karo → best match → notify both</li>
+    <li>Surge pricing: Supply/demand ratio real-time → dynamic pricing</li>
+    <li>Trip state machine: Requested → Accepted → En route → Started → Completed</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">URL Shortener (bit.ly)</div>
+  <ul class="note-list">
+    <li><strong>Encoding:</strong> Base62 (a-z, A-Z, 0-9) — 7 chars = 62⁷ = 3.5 trillion URLs</li>
+    <li>ID generation: Auto-increment DB ID → Base62 encode</li>
+    <li>Redirect: <code>301 Permanent</code> (browser cache, less server hits) vs <code>302 Temporary</code> (analytics track)</li>
+    <li>Cache popular URLs in Redis — read heavy workload</li>
+  </ul>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Top Interview Design Questions</div>
+  <ol class="q-list">
+    <li>Design Twitter — news feed, followers, trending topics at scale.</li>
+    <li>Design a Distributed Cache system like Redis from scratch.</li>
+    <li>Design Google Drive — file sync, conflict resolution, versioning.</li>
+    <li>Design a Notification System — push, email, SMS at 1B users.</li>
+    <li>Design YouTube — video upload, transcoding, streaming.</li>
+    <li>Design a Distributed Rate Limiter at 1M req/sec.</li>
+    <li>Design a Gaming Leaderboard — real-time, global rankings.</li>
+    <li>Design a Web Crawler — politeness, deduplication, scale.</li>
+  </ol>
+</div>`
+  },
+  {
+    num:"15", title:"Interview Strategy", level:"Intermediate", badge:"inter",
+    html:`
+<div class="card">
+  <div class="card-title">45-Minute Interview Framework</div>
+  <div class="arch-row"><div class="arch-label">0–5 min</div><div class="arch-val">Requirements clarify karo — Functional (kya karna hai) + Non-Functional (scale, latency, consistency)</div></div>
+  <div class="arch-row"><div class="arch-label">5–10 min</div><div class="arch-val">Scale estimate — DAU, QPS, storage, bandwidth back-of-envelope calculate karo</div></div>
+  <div class="arch-row"><div class="arch-label">10–20 min</div><div class="arch-val">High-level design — APIs, data models, major components, data flow diagram</div></div>
+  <div class="arch-row"><div class="arch-label">20–35 min</div><div class="arch-val">Deep dive — interviewer ke interest wale area mein. Bottlenecks identify aur solve karo.</div></div>
+  <div class="arch-row"><div class="arch-label">35–45 min</div><div class="arch-val">Trade-offs discuss karo, edge cases, monitoring, failure scenarios, improvements</div></div>
+</div>
+<div class="card">
+  <div class="card-title">Golden Rules</div>
+  <ul class="note-list">
+    <li>Pehle <strong>requirements clarify</strong> karo — assumptions mat banao, puchho</li>
+    <li><strong>Simplest solution pehle</strong>, phir optimize — over-engineering se bachho</li>
+    <li>Trade-offs openly discuss karo — "Ye better hai because X, but Y ka cost hai"</li>
+    <li>Numbers continuously bolte raho — "1M DAU, ~1000 QPS, ~1TB/day"</li>
+    <li><strong>Interviewer engage karo</strong> — dialogue, monologue nahi</li>
+    <li>Admit karo jab nahi pata — honestly discuss karo, fake mat karo</li>
+  </ul>
+  <div class="tip-box"><p><strong>Architecture Checklist:</strong> DNS → CDN → Load Balancer → API Gateway → Application Servers → Cache (Redis) → Primary DB → Read Replicas → Message Queue → Background Workers → Object Storage (S3). Left to right draw karo.</p></div>
+</div>
+<div class="card">
+  <div class="card-title">Common Mistakes to Avoid</div>
+  <ul class="note-list">
+    <li>Requirements puchhe bina design shuru karna</li>
+    <li>Microservices straight away suggest karna — scale justify karo pehle</li>
+    <li>Single point of failure ignore karna</li>
+    <li>Database choice justify na karna</li>
+    <li>Only happy path design karna — failures kya hoge?</li>
+    <li>Monitoring/observability bhool jaana</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-title">Must-Read Resources</div>
+  <div class="chips">
+    <span class="chip">📘 Alex Xu — System Design Interview Vol 1 & 2</span>
+    <span class="chip">📗 Designing Data-Intensive Applications (DDIA)</span>
+    <span class="chip">🌐 ByteByteGo Newsletter</span>
+    <span class="chip">📰 High Scalability Blog</span>
+    <span class="chip">🏢 Netflix / Uber / Airbnb Engineering Blogs</span>
+    <span class="chip">💻 GitHub: donnemartin/system-design-primer</span>
+    <span class="chip">🎥 Gaurav Sen YouTube</span>
+    <span class="chip">📖 Martin Kleppmann Blog</span>
+  </div>
+</div>
+<div class="q-section">
+  <div class="q-title">🎯 Advanced Interview Questions</div>
+  <ol class="q-list">
+    <li>System ke bottlenecks kaise systematically identify karte hain?</li>
+    <li>Zero-downtime database migration kaise karoge at scale?</li>
+    <li>Multi-region deployment mein data consistency kaise handle karoge?</li>
+    <li>Disaster recovery plan design karo — RTO aur RPO define karo.</li>
+    <li>Cost optimization kaise karoge jab system 10x scale ho?</li>
+    <li>Observability — metrics, logs, traces — kaise setup karoge?</li>
+  </ol>
+</div>`
+  }
+];
+
+let cur = 0;
+
+function buildTabs() {
+  const bar = document.getElementById('tabBar');
+  bar.innerHTML = '';
+  const labels = [
+    'Fundamentals','Scaling','Databases','Caching','CDN & Net',
+    'Msg Queue','Microservices','Consistent','Rate Limit','Storage',
+    'Search','Distributed','Patterns','Real Design','Interview'
+  ];
+  topics.forEach((t, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (i === cur ? ' active' : '');
+    btn.innerHTML = `<span class="t-num">${t.num}</span><span class="t-label">${labels[i]}</span>`;
+    btn.onclick = () => go(i);
+    bar.appendChild(btn);
+  });
+}
+
+function buildNav() {
+  const navList = document.getElementById('navList');
+  navList.innerHTML = '';
+  topics.forEach((t, i) => {
+    const a = document.createElement('a');
+    a.href = '#';
+    a.className = 'nav-item' + (i === cur ? ' active' : '');
+    a.innerHTML = `<span class="nav-num">${t.num}</span>${t.title}<span class="nav-badge badge-${t.badge}">${t.level.substring(0,4)}</span>`;
+    a.onclick = (e) => { e.preventDefault(); go(i); closeSidebar(); };
+    navList.appendChild(a);
+  });
+}
+
+function buildSections() {
+  const container = document.getElementById('sections');
+  container.innerHTML = '';
+  topics.forEach((t, i) => {
+    const div = document.createElement('div');
+    div.className = 'section' + (i === 0 ? ' active' : '');
+    div.id = 'section-' + i;
+    const levelClass = t.badge;
+    const levelColors = { fund: '#3ecf8e', inter: '#f7b955', adv: '#f77c6a' };
+    const levelBg = { fund: 'rgba(62,207,142,0.12)', inter: 'rgba(247,185,85,0.12)', adv: 'rgba(247,124,106,0.12)' };
+    div.innerHTML = `
+      <div class="section-header">
+        <div class="section-num">${t.num}</div>
+        <div>
+          <div class="section-title">${t.title}</div>
+          <span class="section-level" style="background:${levelBg[levelClass]};color:${levelColors[levelClass]}">${t.level}</span>
+        </div>
+      </div>
+      ${t.html}
+    `;
+    container.appendChild(div);
+  });
+}
+
+function updateProgress() {
+  const pct = ((cur + 1) / topics.length * 100).toFixed(1);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `${cur + 1} / ${topics.length}`;
+  document.getElementById('prevBtn').disabled = cur === 0;
+  document.getElementById('nextBtn').disabled = cur === topics.length - 1;
+}
+
+function go(i) {
+  document.querySelector('.section.active')?.classList.remove('active');
+  document.querySelectorAll('.nav-item.active').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn.active').forEach(el => el.classList.remove('active'));
+  cur = i;
+  document.getElementById('section-' + i).classList.add('active');
+  document.querySelectorAll('.nav-item')[i].classList.add('active');
+  document.querySelectorAll('.tab-btn')[i].classList.add('active');
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.querySelector('.nav-item.active')?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  document.querySelectorAll('.tab-btn')[i]?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+}
+
+function navigate(d) {
+  const next = Math.max(0, Math.min(topics.length - 1, cur + d));
+  go(next);
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
+});
+
+buildTabs();
+buildNav();
+buildSections();
+updateProgress();
+</script>
+</body>
+</html>
