@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>Notes — A to Z</title>
+<title>Dev Notes — A to Z</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a0a0f;--surface:#12121a;--surface2:#1a1a28;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);--text:#f0eeff;--muted:#8880aa;--radius:12px;--radius-sm:8px;}
@@ -144,7 +144,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 <!-- ── HOME SCREEN ── -->
 <div id="homeScreen">
-  <h1 class="home-title">📚 Atharva Notes — A to Z</h1>
+  <h1 class="home-title">📚 Dev Notes — A to Z</h1>
   <p class="home-sub">Ek course choose karo — uske complete notes aur interview questions padho</p>
   <div class="course-grid" id="courseGrid"></div>
 </div>
@@ -236,22 +236,6 @@ const COURSES = [
       "Pull Req",
       "Adv Git"
     ]
-  },
-  {
-    "id": "dsa",
-    "icon": "\ud83e\udde0",
-    "title": "DSA",
-    "desc": "Data Structures & Algorithms \u2014 Arrays, Trees, Graphs, DP aur interview patterns",
-    "count": 0,
-    "accent": "#f7b955",
-    "accentBg": "rgba(247,185,85,0.1)",
-    "accentTabBg": "rgba(247,185,85,0.15)",
-    "accentBorder": "rgba(247,185,85,0.3)",
-    "accentRowBg": "rgba(247,185,85,0.1)",
-    "accentDim": "rgba(247,185,85,0.25)",
-    "tabLabels": [
-      "Coming Soon"
-    ]
   }
 ];
 
@@ -259,17 +243,19 @@ const TOPICS = {
   sd: [
   {num:`01`,title:`Fundamentals & Basics`,level:`Fundamentals`,badge:`fund`,html:`
 <div class="card"><div class="card-title">System Design kya hota hai?</div><ul class="note-list">
-<li><strong>Definition:</strong>System Design is the process of designing the architecture, components, databases, APIs, and infrastructure of a software system so that it can handle real-world scale efficiently. — Instagram, WhatsApp, Uber jaise Large-scale distributed systems design karna — Instagram, WhatsApp, Uber jaise</li>
-<li><strong>HLD:</strong> High-Level Design High-Level Design is the process of defining the overall architecture and major components of a software system.— overall architecture, components, data flow — architecture, components, data flow</li>
-<li><strong>LLD:</strong> Low-Level Design Low-Level Design is the process of designing the internal code structure, classes, objects, and logic of a system.— class diagrams, DB schema, code structure — class diagrams, DB schema, code structure</li>
+<li><strong>Definition:</strong> Large-scale distributed systems design karna — Instagram, WhatsApp, Uber jaise</li>
+<li><strong>HLD:</strong> High-Level Design — architecture, components, data flow</li>
+<li><strong>LLD:</strong> Low-Level Design — class diagrams, DB schema, code structure</li>
 <li><strong>Goal:</strong> Scalable, Reliable, Available, Maintainable system banana</li>
 </ul></div>
 <div class="card"><div class="card-title">Key Properties (CARS)</div>
-<div class="arch-row"><div class="arch-label">Consistency</div><div class="arch-val">means all nodes/Server in a distributed system have the same and latest data at the same time.Har server/node pe same data ho — bank balance same dikhna chahiye sab jagah</div></div>
-<div class="arch-row"><div class="arch-label">Availability</div><div class="arch-val">The system should always respond to user requests, even during high traffic or some failures. Example: When you open a website or app, it should give a response instead of showing "Server Down."System hamesha respond kare — 99.99% uptime target</div></div>
-<div class="arch-row"><div class="arch-label">Reliability</div><div class="arch-val">The system should continue to work correctly and not lose data, even if some components fail. Example: If one server crashes, your files or bank transactions should still be safe and accessible.Failures pe bhi kaam kare, data lose na ho</div></div>
-<div class="arch-row"><div class="arch-label">Scalability</div><div class="arch-val">The system should be able to handle increased traffic or workload without significant performance issues. Example: If users increase from 10,000 to 100,000, the system should still work smoothly by adding more resources or servers.Load badhne pe handle kar sake — 10x traffic suddenly aaye toh bhi</div></div>
-<div class="tip-box"><p><strong>CAP Theorem:</strong> Partition Tolerance Partition Tolerance means the system can continue operating even when communication between servers is interrupted or fails. Example: Suppose there are two servers, one in Delhi and one in Mumbai. If the network connection between them breaks, they cannot communicate with each other. A partition-tolerant system can still continue working despite this network failure. Simple Definition: Partition Tolerance is the ability of a distributed system to keep functioning even when some servers cannot communicate with each other due to network issues. Consistency, Availability, Partition Tolerance — teeno ek saath impossible. Sirf 2 choose kar sakte ho. Network partition real world mein inevitable hai.</p></div><div class="card"><div class="card-title">Back-of-Envelope Numbers</div><ul class="note-list">
+<div class="arch-row"><div class="arch-label">Consistency</div><div class="arch-val"><strong>means all nodes/servers in a distributed system have the same and latest data at the same time.</strong> Har server/node pe same data ho — bank balance same dikhna chahiye sab jagah.</div></div>
+<div class="arch-row"><div class="arch-label">Availability</div><div class="arch-val"><strong>The system should always respond to user requests, even during high traffic or some failures.</strong> Example: When you open a website or app, it should give a response instead of showing "Server Down." System hamesha respond kare — 99.99% uptime target.</div></div>
+<div class="arch-row"><div class="arch-label">Reliability</div><div class="arch-val"><strong>The system should continue to work correctly and not lose data, even if some components fail.</strong> Example: If one server crashes, your files or bank transactions should still be safe and accessible. Failures pe bhi kaam kare, data lose na ho.</div></div>
+<div class="arch-row"><div class="arch-label">Scalability</div><div class="arch-val"><strong>The system should be able to handle increased traffic or workload without significant performance issues.</strong> Example: If users increase from 10,000 to 100,000, the system should still work smoothly by adding more resources or servers. Load badhne pe handle kar sake — 10x traffic suddenly aaye toh bhi.</div></div>
+<div class="tip-box"><p><strong>CAP Theorem — Partition Tolerance:</strong> Partition Tolerance means the system can continue operating even when communication between servers is interrupted or fails. Example: Suppose there are two servers, one in Delhi and one in Mumbai. If the network connection between them breaks, they cannot communicate. A partition-tolerant system can still continue working despite this failure. <strong>Simple Definition:</strong> Ability of a distributed system to keep functioning even when some servers cannot communicate due to network issues. Consistency, Availability, Partition Tolerance — teeno ek saath impossible. Sirf 2 choose kar sakte ho. Network partition real world mein inevitable hai.</p></div>
+</div>
+<div class="card"><div class="card-title">Back-of-Envelope Numbers</div><ul class="note-list">
 <li><strong>1 Billion users</strong> = ~1000 req/sec avg, ~10,000 peak</li>
 <li><strong>Storage:</strong> 1KB=10³, 1MB=10⁶, 1GB=10⁹, 1TB=10¹² bytes</li>
 <li><strong>SSD:</strong> ~0.1ms | <strong>RAM:</strong> ~0.0001ms | <strong>Network global:</strong> ~150ms</li>
@@ -959,23 +945,7 @@ const TOPICS = {
 <li>Repo ka .git folder 5GB ho gaya — kya karoge?</li>
 </ol></div>`}
   ],
-  dsa: [
-  {num:`01`,title:`DSA — Coming Soon`,level:`Info`,badge:`fund`,html:`
-<div class="card"><div class="card-title">DSA Notes Coming Soon!</div>
-<ul class="note-list">
-<li>Arrays & Strings</li>
-<li>Linked Lists, Stacks, Queues</li>
-<li>Trees & Graphs</li>
-<li>Dynamic Programming</li>
-<li>Sorting & Searching</li>
-<li>Recursion & Backtracking</li>
-<li>Greedy Algorithms</li>
-<li>Interview Patterns (Sliding Window, Two Pointer, etc.)</li>
-</ul>
-<div class="tip-box"><p><strong>Tab tak:</strong> LeetCode, GeeksforGeeks, aur Striver's A2Z DSA Sheet follow karo!</p></div>
-</div>`}
-  ],
-};
+  };
 let activeCourse = null;
 let cur = 0;
 
@@ -1159,6 +1129,1647 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowRight') navigate(1);
   if (e.key === 'ArrowLeft') navigate(-1);
   if (e.key === 'Escape') goHome();
+});
+
+// Azure Topics
+TOPICS["azure"] = [
+  {num:`01`,title:`Azure Kya Hai? — Basics`,level:`Fundamentals`,badge:`fund`,html:`
+<div class="card"><div class="card-title">Microsoft Azure kya hai?</div><ul class="note-list">
+<li><strong>Cloud Computing Platform:</strong> Microsoft ka cloud — 200+ services globally available</li>
+<li><strong>60+ Regions</strong> worldwide — India mein Central India (Pune) aur South India (Chennai)</li>
+<li>AWS ke baad <strong>2nd largest cloud provider</strong> — enterprise market mein #1</li>
+<li><strong>Hybrid Cloud:</strong> Azure ka sabse bada advantage — on-premise + cloud seamlessly integrate</li>
+<li>Azure Active Directory se Microsoft 365, Teams sab ek ecosystem mein</li>
+</ul></div>
+<div class="card"><div class="card-title">Cloud Service Models</div>
+<div class="arch-row"><div class="arch-label">IaaS</div><div class="arch-val">Infrastructure as a Service — Virtual Machines, Storage, Networking. Aap OS aur upar manage karo. Azure VMs.</div></div>
+<div class="arch-row"><div class="arch-label">PaaS</div><div class="arch-val">Platform as a Service — App Service, Azure SQL. Sirf code deploy karo, infrastructure Azure manage kare.</div></div>
+<div class="arch-row"><div class="arch-label">SaaS</div><div class="arch-val">Software as a Service — Microsoft 365, Teams, Dynamics 365. Directly use karo, kuch manage nahi.</div></div>
+<div class="arch-row"><div class="arch-label">Serverless</div><div class="arch-val">Azure Functions — code run karo, server manage mat karo. Pay per execution.</div></div>
+</div>
+<div class="card"><div class="card-title">Azure Global Infrastructure</div><ul class="note-list">
+<li><strong>Region:</strong> Ek geography mein datacenters ka group — "Central India"</li>
+<li><strong>Availability Zone:</strong> Ek region mein 3 physically separate datacenters — high availability ke liye</li>
+<li><strong>Region Pair:</strong> Har region ka ek paired backup region hota hai — disaster recovery</li>
+<li><strong>Edge Locations:</strong> Azure CDN aur Front Door ke liye — user ke paas content deliver</li>
+</ul></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Azure aur AWS mein kya major differences hain?</li>
+<li>IaaS vs PaaS vs SaaS — real examples ke saath explain karo.</li>
+<li>Azure Availability Zones aur Availability Sets mein kya fark hai?</li>
+<li>Hybrid cloud architecture kab zaroori hoti hai?</li>
+<li>Azure Region pair kya hota hai? Disaster recovery mein kaise kaam karta hai?</li>
+</ol></div>`},
+  {num:`02`,title:`Azure Compute Services`,level:`Fundamentals`,badge:`fund`,html:`
+<div class="card"><div class="card-title">Azure Virtual Machines (VMs)</div><ul class="note-list">
+<li>Full control — Windows ya Linux, koi bhi OS choose karo</li>
+<li><strong>VM Sizes:</strong> General Purpose (B, D series) | Compute Optimized (F) | Memory Optimized (E, M) | GPU (N)</li>
+<li><strong>Availability Set:</strong> VMs ko alag fault domains aur update domains mein rakho</li>
+<li><strong>VM Scale Sets (VMSS):</strong> Auto-scaling VM group — load ke hisaab se automatically badho/ghato</li>
+<li><strong>Spot VMs:</strong> 90% discount — unused capacity, kisi bhi waqt terminate ho sakti hai</li>
+<li><strong>Reserved Instances:</strong> 1-3 year commitment = 72% cost savings</li>
+</ul></div>
+<div class="card"><div class="card-title">Azure App Service</div><ul class="note-list">
+<li>PaaS — Web apps, REST APIs, mobile backends deploy karo without managing servers</li>
+<li>Languages: .NET, Java, Node.js, Python, PHP, Ruby</li>
+<li><strong>App Service Plan:</strong> Underlying compute define karta hai — Free → Shared → Basic → Standard → Premium</li>
+<li><strong>Deployment Slots:</strong> Staging → Production swap karo zero downtime ke saath</li>
+<li>Built-in auto-scaling, SSL, custom domains, CI/CD integration</li>
+</ul></div>
+<div class="card"><div class="card-title">Azure Functions (Serverless)</div><ul class="note-list">
+<li>Event-driven code — HTTP trigger, Timer, Queue message, Blob upload pe run hota hai</li>
+<li><strong>Consumption Plan:</strong> Pay per execution — first 1 million executions free per month</li>
+<li><strong>Durable Functions:</strong> Stateful workflows — orchestration, fan-out/fan-in patterns</li>
+<li>Cold start issue — Premium plan se mitigate karo</li>
+</ul></div>
+<div class="card"><div class="card-title">Azure Kubernetes Service (AKS)</div><ul class="note-list">
+<li>Managed Kubernetes — control plane Azure manage karta hai, free hai</li>
+<li>Worker nodes VM Scale Sets pe run hote hain</li>
+<li><strong>Node Pools:</strong> System pool + User pools — different VM sizes for different workloads</li>
+<li>Integration: Azure Container Registry, Azure Monitor, Azure AD RBAC</li>
+</ul></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Azure VM vs App Service vs Functions — kab kya choose karoge?</li>
+<li>VM Scale Sets kaise kaam karta hai? Scaling policies kya hoti hain?</li>
+<li>App Service deployment slots kya hote hain? Blue-green deployment kaise karo?</li>
+<li>Azure Functions cold start problem kya hai? Kaise solve karoge?</li>
+<li>AKS mein node pool kya hota hai? Kab multiple pools chahiye?</li>
+</ol></div>`},
+  {num:`03`,title:`Azure Storage Services`,level:`Fundamentals`,badge:`fund`,html:`
+<div class="card"><div class="card-title">Azure Storage Account</div><ul class="note-list">
+<li>Unique namespace — globally unique name dena hota hai</li>
+<li><strong>Storage Account Types:</strong> General Purpose v2 (GPv2) — sabse recommended</li>
+<li><strong>Replication:</strong> LRS (3 copies same datacenter) → ZRS → GRS → GZRS (safest)</li>
+<li><strong>Access Tiers:</strong> Hot (frequent) → Cool (infrequent) → Archive (rare, cheapest)</li>
+</ul></div>
+<div class="card"><div class="card-title">Azure Storage Services</div>
+<div class="arch-row"><div class="arch-label">Blob Storage</div><div class="arch-val">Unstructured data — images, videos, logs, backups. AWS S3 jaisa. Block, Append, Page blobs.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Files</div><div class="arch-val">Managed file shares — SMB/NFS protocol. On-premise se cloud pe lift-and-shift ke liye.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Queue</div><div class="arch-val">Simple message queue — 64KB max message, 7 days TTL. Decoupling ke liye.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Tables</div><div class="arch-val">NoSQL key-value store — simple, cheap. Cosmos DB se purana, basic use cases.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Disks</div><div class="arch-val">VM ke liye managed disks — Ultra, Premium SSD, Standard SSD, Standard HDD.</div></div>
+</div>
+<div class="card"><div class="card-title">Blob Storage Key Concepts</div><ul class="note-list">
+<li><strong>Container:</strong> Blobs ka logical grouping — S3 bucket jaisa</li>
+<li><strong>SAS (Shared Access Signature):</strong> Temporary limited access URL — AWS pre-signed URL jaisa</li>
+<li><strong>Lifecycle Management:</strong> Hot → Cool → Archive automatically — cost optimize karo</li>
+<li><strong>Soft Delete:</strong> Accidentally deleted blobs recover kar sakte ho (1-365 days)</li>
+<li><strong>Immutable Storage:</strong> WORM — compliance ke liye, data modify nahi ho sakta</li>
+</ul></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>LRS vs GRS vs ZRS replication — kab kya choose karoge?</li>
+<li>Blob storage tiers kya hain? Lifecycle policy kaise set karoge?</li>
+<li>SAS token kya hota hai? Security best practices kya hain?</li>
+<li>Azure Files vs Blob Storage — kab kya?</li>
+<li>Storage account ka public access kaise band karte hain?</li>
+</ol></div>`},
+  {num:`04`,title:`Azure Databases`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">Azure SQL Database</div><ul class="note-list">
+<li>Fully managed SQL Server — patching, backups, HA sab Azure karta hai</li>
+<li><strong>DTU model:</strong> Bundled CPU+IO+memory | <strong>vCore model:</strong> Alag alag configure karo</li>
+<li><strong>Elastic Pool:</strong> Multiple DBs ek pool ke resources share karein — cost effective</li>
+<li><strong>Business Critical tier:</strong> In-memory OLTP + read replicas built-in</li>
+<li>Automatic tuning — missing indexes aur query plans automatically suggest karta hai</li>
+</ul></div>
+<div class="card"><div class="card-title">Azure Cosmos DB</div><ul class="note-list">
+<li>Globally distributed, multi-model NoSQL database</li>
+<li><strong>APIs:</strong> Core (SQL), MongoDB, Cassandra, Gremlin (Graph), Table</li>
+<li><strong>Consistency Levels:</strong> Strong → Bounded Staleness → Session → Consistent Prefix → Eventual</li>
+<li><strong>Multi-region writes:</strong> Sab regions mein write karo — conflict resolution automatic</li>
+<li><strong>Request Units (RU):</strong> Throughput measure karo — 1 RU = 1 KB read</li>
+<li>99.999% availability SLA — five nines!</li>
+</ul></div>
+<div class="card"><div class="card-title">Other Azure Database Services</div>
+<div class="arch-row"><div class="arch-label">Azure Database for PostgreSQL</div><div class="arch-val">Managed PostgreSQL — Flexible Server recommended. Auto-scaling, HA.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Database for MySQL</div><div class="arch-val">Managed MySQL — same benefits as PostgreSQL offering.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Cache for Redis</div><div class="arch-val">Managed Redis — caching, session, pub/sub. Basic, Standard, Premium tiers.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Synapse Analytics</div><div class="arch-val">Data warehouse + big data analytics. SQL + Spark ek jagah.</div></div>
+</div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Azure SQL Database vs Cosmos DB — kab kya choose karoge?</li>
+<li>Cosmos DB mein partition key choose karne ki strategy kya hai?</li>
+<li>Cosmos DB ke 5 consistency levels explain karo. Kab kya use karoge?</li>
+<li>Azure SQL elastic pool kab useful hai?</li>
+<li>Cosmos DB RU kya hote hain? Throttling kaise handle karoge?</li>
+</ol></div>`},
+  {num:`05`,title:`Azure Networking`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">Azure Virtual Network (VNet)</div><ul class="note-list">
+<li>Azure mein private network — AWS VPC jaisa</li>
+<li>Resources ko logically isolate karo — VMs, databases, etc.</li>
+<li><strong>Subnets:</strong> VNet ko smaller segments mein baanto</li>
+<li><strong>NSG (Network Security Group):</strong> Firewall rules — inbound/outbound traffic control</li>
+<li><strong>VNet Peering:</strong> Do VNets ko privately connect karo — same ya different regions</li>
+<li><strong>Service Endpoints:</strong> Azure services ko VNet se directly access karo — internet bypass</li>
+<li><strong>Private Endpoints:</strong> Azure service ko private IP dedo — fully private access</li>
+</ul></div>
+<div class="card"><div class="card-title">Azure Load Balancers & Gateway</div>
+<div class="arch-row"><div class="arch-label">Azure Load Balancer</div><div class="arch-val">Layer 4 (TCP/UDP). Internal ya public. VM traffic distribute karo.</div></div>
+<div class="arch-row"><div class="arch-label">Application Gateway</div><div class="arch-val">Layer 7 (HTTP/HTTPS). URL-based routing, SSL termination, WAF built-in.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Front Door</div><div class="arch-val">Global CDN + Load Balancer + WAF. Multi-region apps ke liye.</div></div>
+<div class="arch-row"><div class="arch-label">Traffic Manager</div><div class="arch-val">DNS-based global load balancing. Geographic, weighted, priority routing.</div></div>
+<div class="arch-row"><div class="arch-label">VPN Gateway</div><div class="arch-val">On-premise network ko Azure se connect karo — Site-to-Site VPN.</div></div>
+<div class="arch-row"><div class="arch-label">ExpressRoute</div><div class="arch-val">Dedicated private connection — internet bypass, 50Mbps to 100Gbps.</div></div>
+</div>
+<div class="card"><div class="card-title">Azure DNS & CDN</div><ul class="note-list">
+<li><strong>Azure DNS:</strong> Domain hosting — authoritative DNS, anycast network</li>
+<li><strong>Azure CDN:</strong> Static content globally distribute karo — Akamai ya Verizon backend</li>
+<li><strong>DDoS Protection:</strong> Basic (free) ya Standard (advanced mitigation)</li>
+</ul></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>NSG vs Azure Firewall — kab kya use karoge?</li>
+<li>VNet Peering vs VPN Gateway — difference aur use cases?</li>
+<li>Application Gateway vs Azure Front Door — kab kya?</li>
+<li>Private Endpoint aur Service Endpoint mein kya fark hai?</li>
+<li>ExpressRoute kab zaroori hota hai? Cost-benefit kya hai?</li>
+</ol></div>`},
+  {num:`06`,title:`Azure Identity & Security`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">Azure Active Directory (Azure AD / Entra ID)</div><ul class="note-list">
+<li>Cloud-based identity and access management — Microsoft ka IAM service</li>
+<li><strong>Tenants:</strong> Organization ka dedicated Azure AD instance</li>
+<li><strong>Users, Groups, Service Principals, Managed Identities</strong></li>
+<li><strong>SSO:</strong> Single Sign-On — ek baar login, sab Microsoft services access</li>
+<li><strong>MFA:</strong> Multi-Factor Authentication — security ke liye mandatory karo</li>
+<li><strong>Conditional Access:</strong> Context-based policies — location, device, risk level</li>
+</ul></div>
+<div class="card"><div class="card-title">RBAC (Role-Based Access Control)</div><ul class="note-list">
+<li>Kaun kya kar sakta hai — <strong>Who (Principal) + What (Role) + Where (Scope)</strong></li>
+<li><strong>Built-in Roles:</strong> Owner, Contributor, Reader, User Access Administrator</li>
+<li><strong>Custom Roles:</strong> Fine-grained permissions define karo</li>
+<li><strong>Scope:</strong> Management Group → Subscription → Resource Group → Resource</li>
+<li><strong>Managed Identity:</strong> App ko automatically Azure AD identity dedo — no credentials needed</li>
+</ul>
+<div class="tip-box"><p><strong>Best Practice:</strong> Least privilege principle — sirf zaroori permissions do. Service ke liye Managed Identity use karo, credentials mat store karo.</p></div>
+</div>
+<div class="card"><div class="card-title">Azure Key Vault & Security Services</div>
+<div class="arch-row"><div class="arch-label">Key Vault</div><div class="arch-val">Secrets, keys, certificates securely store karo. App se directly retrieve karo, code mein hardcode mat karo.</div></div>
+<div class="arch-row"><div class="arch-label">Microsoft Defender</div><div class="arch-val">Cloud workload protection — VMs, databases, containers ke threats detect karo.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Sentinel</div><div class="arch-val">Cloud-native SIEM — security events collect, analyze, respond karo.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Policy</div><div class="arch-val">Governance rules enforce karo — compliant resources only deploy ho sakein.</div></div>
+</div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Managed Identity kya hoti hai? Service Principal se kaise better hai?</li>
+<li>RBAC scope hierarchy explain karo — inheritance kaise kaam karta hai?</li>
+<li>Azure Key Vault ko application ke saath kaise integrate karte hain?</li>
+<li>Conditional Access policies kab zaroori hoti hain?</li>
+<li>Azure AD B2B vs B2C — kab kya use karoge?</li>
+</ol></div>`},
+  {num:`07`,title:`Azure Messaging & Integration`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">Azure Service Bus</div><ul class="note-list">
+<li>Enterprise messaging — reliable, ordered, transactional messaging</li>
+<li><strong>Queues:</strong> Point-to-point — ek sender, ek receiver</li>
+<li><strong>Topics + Subscriptions:</strong> Pub/Sub — ek message, multiple subscribers filter-based</li>
+<li><strong>Sessions:</strong> Ordered processing — FIFO guarantee</li>
+<li><strong>Dead Letter Queue (DLQ):</strong> Failed messages automatically yahan jaate hain</li>
+<li>Max message size: 256KB (Standard) | 100MB (Premium)</li>
+</ul></div>
+<div class="card"><div class="card-title">Azure Event Hub</div><ul class="note-list">
+<li>Big data streaming platform — Kafka jaisa, millions events/second</li>
+<li><strong>Partitions:</strong> Parallel processing ke liye — throughput badhaao</li>
+<li><strong>Consumer Groups:</strong> Multiple readers independently same stream padh sakein</li>
+<li><strong>Capture:</strong> Events automatically Blob Storage ya Data Lake mein save karo</li>
+<li><strong>Kafka compatible:</strong> Existing Kafka apps bina code change ke connect kar sakte hain</li>
+</ul></div>
+<div class="card"><div class="card-title">Azure Event Grid & Logic Apps</div>
+<div class="arch-row"><div class="arch-label">Event Grid</div><div class="arch-val">Reactive event routing — Blob uploaded, VM deleted → trigger Functions/Logic Apps. Push model.</div></div>
+<div class="arch-row"><div class="arch-label">Logic Apps</div><div class="arch-val">Low-code workflow automation — 400+ connectors. Salesforce, SAP, Office 365 integrate karo.</div></div>
+<div class="arch-row"><div class="arch-label">API Management</div><div class="arch-val">API gateway — rate limiting, auth, caching, versioning, developer portal.</div></div>
+<div class="tip-box"><p><strong>Choose karo:</strong> Service Bus = reliable enterprise messaging | Event Hub = high-volume streaming | Event Grid = reactive event routing</p></div>
+</div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Service Bus vs Event Hub vs Event Grid — kab kya use karoge?</li>
+<li>Service Bus Topics aur Subscriptions kaise kaam karte hain?</li>
+<li>Event Hub ka partition strategy kya honi chahiye?</li>
+<li>Azure API Management ke key features kya hain?</li>
+<li>Logic Apps vs Azure Functions — kab kya prefer karoge?</li>
+</ol></div>`},
+  {num:`08`,title:`Azure DevOps & Monitoring`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">Azure DevOps</div><ul class="note-list">
+<li>End-to-end DevOps platform — plan, develop, deliver, operate</li>
+<li><strong>Azure Boards:</strong> Work items, sprints, backlogs — Jira jaisa</li>
+<li><strong>Azure Repos:</strong> Git repositories hosting — unlimited private repos</li>
+<li><strong>Azure Pipelines:</strong> CI/CD — any language, any platform, any cloud</li>
+<li><strong>Azure Artifacts:</strong> Package management — npm, NuGet, Maven, PyPI</li>
+<li><strong>Azure Test Plans:</strong> Manual + automated testing management</li>
+</ul></div>
+<div class="card"><div class="card-title">Azure Pipelines — CI/CD</div>
+<div class="cmd-block">
+<div><span class="cmt"># azure-pipelines.yml</span></div>
+<div><span class="str">trigger</span>:</div>
+<div>  <span class="fl">branches</span>: {<span class="str">include</span>: [main]}</div>
+<div><span class="str">pool</span>:</div>
+<div>  <span class="fl">vmImage</span>: <span class="str">ubuntu-latest</span></div>
+<div><span class="str">stages</span>:</div>
+<div>- <span class="str">stage</span>: Build</div>
+<div>  <span class="str">jobs</span>:</div>
+<div>  - <span class="str">job</span>: BuildJob</div>
+<div>    <span class="str">steps</span>:</div>
+<div>    - <span class="str">task</span>: NodeTool@0</div>
+<div>      <span class="str">inputs</span>: {<span class="fl">versionSpec</span>: <span class="str">"20.x"</span>}</div>
+<div>    - <span class="cmd">script</span>: npm ci && npm test</div>
+</div></div>
+<div class="card"><div class="card-title">Azure Monitor & Observability</div>
+<div class="arch-row"><div class="arch-label">Azure Monitor</div><div class="arch-val">Metrics aur logs collect karo from all Azure resources. Centralized hub.</div></div>
+<div class="arch-row"><div class="arch-label">Application Insights</div><div class="arch-val">APM tool — request traces, exceptions, performance, user behavior track karo.</div></div>
+<div class="arch-row"><div class="arch-label">Log Analytics</div><div class="arch-val">KQL (Kusto Query Language) se logs query karo. Powerful analysis.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Alerts</div><div class="arch-val">Metric ya log condition pe automatically notify karo — email, SMS, webhook.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Dashboards</div><div class="arch-val">Custom monitoring dashboards — pin any metric or log query.</div></div>
+</div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Azure Pipelines mein stages, jobs, steps ka hierarchy explain karo.</li>
+<li>Application Insights kya track karta hai? SDK kaise integrate karte hain?</li>
+<li>Log Analytics mein KQL query kaise likhte hain? Basic example do.</li>
+<li>Azure Monitor alerts kaise configure karoge for VM high CPU?</li>
+<li>GitHub Actions vs Azure Pipelines — kab kya prefer karoge?</li>
+</ol></div>`},
+  {num:`09`,title:`Azure AI & Cognitive Services`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">Azure AI Services (Cognitive Services)</div><ul class="note-list">
+<li>Pre-built AI models — bina ML knowledge ke AI features add karo</li>
+<li><strong>Vision:</strong> Computer Vision, Face API, Form Recognizer, Custom Vision</li>
+<li><strong>Speech:</strong> Speech-to-Text, Text-to-Speech, Speech Translation</li>
+<li><strong>Language:</strong> Text Analytics, Translator, QnA Maker, LUIS</li>
+<li><strong>Decision:</strong> Anomaly Detector, Content Moderator, Personalizer</li>
+</ul></div>
+<div class="card"><div class="card-title">Azure OpenAI Service</div><ul class="note-list">
+<li>GPT-4, GPT-3.5, DALL-E, Embeddings — Azure pe managed OpenAI models</li>
+<li><strong>Enterprise grade:</strong> Data privacy, compliance, no training on your data</li>
+<li><strong>Deployments:</strong> Model versions deploy karo, capacity manage karo</li>
+<li>REST API ya SDKs — Python, .NET, JavaScript</li>
+<li>Azure Virtual Network ke andar run karo — fully private</li>
+</ul></div>
+<div class="card"><div class="card-title">Azure Machine Learning</div>
+<div class="arch-row"><div class="arch-label">Azure ML Studio</div><div class="arch-val">End-to-end ML platform — data prep, training, deployment, monitoring.</div></div>
+<div class="arch-row"><div class="arch-label">Compute Clusters</div><div class="arch-val">Auto-scaling GPU/CPU clusters for training. Pay only when running.</div></div>
+<div class="arch-row"><div class="arch-label">MLflow Integration</div><div class="arch-val">Experiment tracking, model registry, deployment pipeline.</div></div>
+<div class="arch-row"><div class="arch-label">Managed Endpoints</div><div class="arch-val">Real-time ya batch inference endpoints. Kubernetes ya managed compute.</div></div>
+</div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Azure Cognitive Services vs Azure ML — kab kya use karoge?</li>
+<li>Azure OpenAI ko apne private data ke saath kaise use karoge? RAG pattern explain karo.</li>
+<li>Azure ML mein model training se deployment tak ka flow kya hoga?</li>
+<li>Cognitive Services ki pricing model kya hai? Cost optimize kaise karoge?</li>
+<li>Responsible AI Azure mein kaise implement karte hain?</li>
+</ol></div>`},
+  {num:`10`,title:`Azure Cost & Governance`,level:`Advanced`,badge:`adv`,html:`
+<div class="card"><div class="card-title">Azure Cost Management</div><ul class="note-list">
+<li><strong>Azure Cost Management + Billing:</strong> Spending track karo, budgets set karo, alerts lagao</li>
+<li><strong>Azure Pricing Calculator:</strong> Estimate karo deploy karne se pehle</li>
+<li><strong>TCO Calculator:</strong> On-premise vs Azure cost comparison</li>
+<li><strong>Cost Saving Tips:</strong></li>
+<li>Reserved Instances (1-3 yr) = 72% savings</li>
+<li>Spot VMs = 90% savings (interruptible workloads)</li>
+<li>Auto-shutdown dev VMs — nights aur weekends pe</li>
+<li>Right-sizing — unused resources identify karo with Azure Advisor</li>
+<li>Lifecycle policies — old data cool/archive tier mein move karo</li>
+</ul></div>
+<div class="card"><div class="card-title">Azure Governance</div>
+<div class="arch-row"><div class="arch-label">Management Groups</div><div class="arch-val">Subscriptions ko organize karo — policies aur RBAC hierarchy mein apply karo.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Policy</div><div class="arch-val">Rules enforce karo — "sirf approved regions mein deploy ho", "tags mandatory hain".</div></div>
+<div class="arch-row"><div class="arch-label">Azure Blueprints</div><div class="arch-val">Environment templates — policies, RBAC, resource groups ek saath deploy karo.</div></div>
+<div class="arch-row"><div class="arch-label">Azure Advisor</div><div class="arch-val">Personalized recommendations — cost, security, reliability, performance, operations.</div></div>
+<div class="arch-row"><div class="arch-label">Resource Tags</div><div class="arch-val">Metadata labels — cost center, environment, owner. Billing aur management ke liye.</div></div>
+</div>
+<div class="card"><div class="card-title">Azure Well-Architected Framework</div><ul class="note-list">
+<li><strong>Reliability:</strong> Failures se recover karo — HA, DR, backup</li>
+<li><strong>Security:</strong> Defense in depth — identity, network, data protection</li>
+<li><strong>Cost Optimization:</strong> Value maximize karo, waste minimize karo</li>
+<li><strong>Operational Excellence:</strong> DevOps practices, monitoring, automation</li>
+<li><strong>Performance Efficiency:</strong> Right resources, scaling, optimization</li>
+</ul>
+<div class="tip-box"><p><strong>Azure Certifications Path:</strong> AZ-900 (Fundamentals) → AZ-104 (Administrator) → AZ-204 (Developer) → AZ-305 (Solutions Architect)</p></div>
+</div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Azure cost optimize karne ke top 5 strategies kya hain?</li>
+<li>Azure Policy aur Azure Blueprints mein kya fark hai?</li>
+<li>Resource tagging strategy kaise design karoge enterprise ke liye?</li>
+<li>Azure Well-Architected Framework ke 5 pillars explain karo.</li>
+<li>Multi-subscription architecture kab zaroori hoti hai?</li>
+</ol></div>`},
+  {num:`11`,title:`Azure Architecture Patterns`,level:`Advanced`,badge:`adv`,html:`
+<div class="card"><div class="card-title">High Availability Architecture</div><ul class="note-list">
+<li><strong>99.99% SLA</strong> ke liye: Availability Zones + Load Balancer + Auto-scaling</li>
+<li><strong>Active-Active:</strong> Dono regions traffic serve karein — Traffic Manager se distribute</li>
+<li><strong>Active-Passive:</strong> Primary region + Standby secondary — failover manual ya automatic</li>
+<li><strong>RTO (Recovery Time Objective):</strong> Kitni der mein recover hona chahiye</li>
+<li><strong>RPO (Recovery Point Objective):</strong> Kitna data loss acceptable hai</li>
+</ul></div>
+<div class="card"><div class="card-title">Common Azure Architectures</div>
+<div class="arch-row"><div class="arch-label">Web App</div><div class="arch-val">Front Door → App Service → Azure SQL + Redis Cache + Blob Storage</div></div>
+<div class="arch-row"><div class="arch-label">Microservices</div><div class="arch-val">API Management → AKS → Service Bus → Cosmos DB + SQL</div></div>
+<div class="arch-row"><div class="arch-label">Serverless</div><div class="arch-val">Event Grid → Functions → Cosmos DB + Blob Storage + SendGrid</div></div>
+<div class="arch-row"><div class="arch-label">Data Pipeline</div><div class="arch-val">Event Hub → Stream Analytics → Data Lake → Synapse Analytics → Power BI</div></div>
+<div class="arch-row"><div class="arch-label">Hybrid</div><div class="arch-val">ExpressRoute/VPN → Azure Arc → on-premise + Azure seamlessly</div></div>
+</div>
+<div class="card"><div class="card-title">Azure Landing Zone</div><ul class="note-list">
+<li>Enterprise-scale Azure setup — management groups, subscriptions, networking, security pre-configured</li>
+<li><strong>Platform subscriptions:</strong> Identity, Management, Connectivity</li>
+<li><strong>Application subscriptions:</strong> Production, Non-production workloads</li>
+<li>Infrastructure as Code — Bicep ya Terraform se automate karo</li>
+</ul></div>
+<div class="card"><div class="card-title">Infrastructure as Code</div>
+<div class="cmd-block">
+<div><span class="cmt"># Azure Bicep — ARM template ka modern alternative</span></div>
+<div><span class="str">resource</span> storageAccount <span class="str">"Microsoft.Storage/storageAccounts@2023-01-01"</span> = {</div>
+<div>  <span class="fl">name</span>: <span class="str">"mystorageaccount"</span></div>
+<div>  <span class="fl">location</span>: resourceGroup().location</div>
+<div>  <span class="fl">sku</span>: { <span class="fl">name</span>: <span class="str">"Standard_LRS"</span> }</div>
+<div>  <span class="fl">kind</span>: <span class="str">"StorageV2"</span></div>
+<div>}</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Azure CLI</span></div>
+<div><span class="cmd">az group create</span> <span class="fl">--name</span> myRG <span class="fl">--location</span> <span class="str">"centralindia"</span></div>
+<div><span class="cmd">az deployment group create</span> <span class="fl">--resource-group</span> myRG <span class="fl">--template-file</span> main.bicep</div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Multi-region HA architecture Azure pe design karo.</li>
+<li>RTO aur RPO ke hisaab se DR strategy kaise choose karoge?</li>
+<li>ARM templates vs Bicep vs Terraform — kab kya use karoge?</li>
+<li>Azure Landing Zone kya hota hai? Enterprise ke liye kyun zaroori hai?</li>
+<li>Microservices architecture Azure pe design karo — services choose karo aur justify karo.</li>
+</ol></div>`},
+  {num:`12`,title:`Azure Interview Prep`,level:`Advanced`,badge:`adv`,html:`
+<div class="card"><div class="card-title">Most Asked Azure Interview Topics</div><ul class="note-list">
+<li><strong>Compute:</strong> VMs, App Service, Functions, AKS — differences aur use cases</li>
+<li><strong>Storage:</strong> Blob tiers, replication options, SAS tokens</li>
+<li><strong>Networking:</strong> VNet, NSG, Load Balancer vs Application Gateway</li>
+<li><strong>Identity:</strong> Azure AD, RBAC, Managed Identity, Key Vault</li>
+<li><strong>Databases:</strong> Azure SQL vs Cosmos DB — consistency, scaling</li>
+<li><strong>Messaging:</strong> Service Bus vs Event Hub vs Event Grid</li>
+<li><strong>DevOps:</strong> Azure Pipelines, Application Insights</li>
+</ul></div>
+<div class="card"><div class="card-title">AWS → Azure Service Mapping</div>
+<div class="arch-row"><div class="arch-label">EC2</div><div class="arch-val">Azure Virtual Machines</div></div>
+<div class="arch-row"><div class="arch-label">S3</div><div class="arch-val">Azure Blob Storage</div></div>
+<div class="arch-row"><div class="arch-label">RDS</div><div class="arch-val">Azure SQL Database / Azure Database for PostgreSQL</div></div>
+<div class="arch-row"><div class="arch-label">DynamoDB</div><div class="arch-val">Azure Cosmos DB</div></div>
+<div class="arch-row"><div class="arch-label">Lambda</div><div class="arch-val">Azure Functions</div></div>
+<div class="arch-row"><div class="arch-label">EKS</div><div class="arch-val">Azure Kubernetes Service (AKS)</div></div>
+<div class="arch-row"><div class="arch-label">CloudWatch</div><div class="arch-val">Azure Monitor + Application Insights</div></div>
+<div class="arch-row"><div class="arch-label">IAM</div><div class="arch-val">Azure Active Directory + RBAC</div></div>
+<div class="arch-row"><div class="arch-label">SQS/SNS</div><div class="arch-val">Azure Service Bus</div></div>
+<div class="arch-row"><div class="arch-label">Kinesis</div><div class="arch-val">Azure Event Hub</div></div>
+</div>
+<div class="card"><div class="card-title">Certifications & Resources</div>
+<div class="chips">
+<span class="chip">📘 AZ-900 — Azure Fundamentals (Beginner)</span>
+<span class="chip">📗 AZ-104 — Azure Administrator</span>
+<span class="chip">📙 AZ-204 — Azure Developer</span>
+<span class="chip">📕 AZ-305 — Solutions Architect Expert</span>
+<span class="chip">🌐 Microsoft Learn (free)</span>
+<span class="chip">🎥 John Savill YouTube</span>
+<span class="chip">📖 Azure Architecture Center</span>
+<span class="chip">🧪 Azure Free Account ($200 credit)</span>
+</div></div>
+<div class="q-section"><div class="q-title">Final Interview Questions</div><ol class="q-list">
+<li>Azure pe 3-tier web application architecture design karo.</li>
+<li>On-premise SQL Server ko Azure mein migrate karne ka plan kya hoga?</li>
+<li>Azure pe zero-downtime deployment strategy kya hogi?</li>
+<li>Cost suddenly 3x badh gayi Azure billing mein — kaise investigate karoge?</li>
+<li>Azure security posture improve karne ke top 5 steps kya hain?</li>
+<li>Startup ke liye Azure architecture suggest karo — cost-effective aur scalable.</li>
+</ol></div>`}
+];
+
+COURSES.push({
+  id:"azure",
+  icon:"☁️",
+  title:"Microsoft Azure",
+  desc:"Cloud computing, compute, storage, networking, identity, DevOps aur Azure architecture",
+  count:12,
+  accent:"#0078d4",
+  accentBg:"rgba(0,120,212,0.1)",
+  accentTabBg:"rgba(0,120,212,0.15)",
+  accentBorder:"rgba(0,120,212,0.3)",
+  accentRowBg:"rgba(0,120,212,0.1)",
+  accentDim:"rgba(0,120,212,0.25)",
+  tabLabels:["Basics","Compute","Storage","Databases","Networking","Identity","Messaging","DevOps","AI Services","Cost & Gov","Architecture","Interview Prep"]
+});
+
+// LangChain Topics
+TOPICS["langchain"] = [
+  {num:`01`,title:`LangChain Kya Hai? — Basics`,level:`Fundamentals`,badge:`fund`,html:`
+<div class="card"><div class="card-title">LangChain kya hai?</div><ul class="note-list">
+<li><strong>Open-source framework</strong> — LLMs ke upar powerful applications banao</li>
+<li>Harrison Chase ne 2022 mein banaya — Python aur JavaScript dono mein available</li>
+<li><strong>Core idea:</strong> LLMs ko tools, memory, aur data sources ke saath chain karo</li>
+<li>GPT-4, Claude, Gemini, Llama — koi bhi LLM plug karo, code same rahega</li>
+<li><strong>Use cases:</strong> Chatbots, RAG systems, AI agents, document Q&A, code generation</li>
+</ul></div>
+<div class="card"><div class="card-title">LangChain Core Components</div>
+<div class="arch-row"><div class="arch-label">Models</div><div class="arch-val">LLMs aur Chat Models — OpenAI, Anthropic, Google, Ollama (local) ke saath kaam karo</div></div>
+<div class="arch-row"><div class="arch-label">Prompts</div><div class="arch-val">PromptTemplates — dynamic, reusable prompts banao variables ke saath</div></div>
+<div class="arch-row"><div class="arch-label">Chains</div><div class="arch-val">Multiple steps ko sequence mein jorado — prompt → LLM → output parser</div></div>
+<div class="arch-row"><div class="arch-label">Memory</div><div class="arch-val">Conversation history store karo — chatbot ko context yaad rahe</div></div>
+<div class="arch-row"><div class="arch-label">Agents</div><div class="arch-val">LLM ko tools dedo — search, calculator, APIs — khud decide kare kya use karna hai</div></div>
+<div class="arch-row"><div class="arch-label">Retrievers</div><div class="arch-val">Vector stores se relevant documents dhundho — RAG ka core</div></div>
+</div>
+<div class="card"><div class="card-title">Installation & Setup</div>
+<div class="cmd-block">
+<div><span class="cmt"># Install karo</span></div>
+<div><span class="cmd">pip install</span> langchain langchain-openai langchain-community</div>
+<div><span class="cmd">pip install</span> python-dotenv chromadb</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># .env file</span></div>
+<div><span class="str">OPENAI_API_KEY</span>=sk-...</div>
+<div><span class="str">ANTHROPIC_API_KEY</span>=sk-ant-...</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Basic usage</span></div>
+<div><span class="cmd">from</span> langchain_openai <span class="cmd">import</span> ChatOpenAI</div>
+<div>llm = ChatOpenAI(model=<span class="str">"gpt-4o"</span>, temperature=<span class="fl">0</span>)</div>
+<div>response = llm.invoke(<span class="str">"Python kya hai?"</span>)</div>
+<div><span class="cmd">print</span>(response.content)</div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>LangChain kya solve karta hai? Bina LangChain ke LLM apps mein kya problems hain?</li>
+<li>LangChain ke core components kya hain? Ek real app mein kaise use hote hain?</li>
+<li>LangChain vs LlamaIndex — kab kya choose karoge?</li>
+<li>LangChain Expression Language (LCEL) kya hai? Purane chains se better kyun?</li>
+<li>Different LLM providers ko LangChain mein switch karna kitna easy hai?</li>
+</ol></div>`},
+  {num:`02`,title:`Models & Prompts`,level:`Fundamentals`,badge:`fund`,html:`
+<div class="card"><div class="card-title">LLM vs Chat Models</div>
+<div class="arch-row"><div class="arch-label">LLM</div><div class="arch-val">String in → String out. Purana style. <code>llm.invoke("text")</code></div></div>
+<div class="arch-row"><div class="arch-label">Chat Model</div><div class="arch-val">Messages in → Message out. Modern. System + Human + AI messages.</div></div>
+<div class="cmd-block">
+<div><span class="cmd">from</span> langchain_openai <span class="cmd">import</span> ChatOpenAI</div>
+<div><span class="cmd">from</span> langchain_anthropic <span class="cmd">import</span> ChatAnthropic</div>
+<div><span class="cmd">from</span> langchain_community.llms <span class="cmd">import</span> Ollama</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Same interface, different providers</span></div>
+<div>openai_llm = ChatOpenAI(model=<span class="str">"gpt-4o"</span>)</div>
+<div>claude_llm = ChatAnthropic(model=<span class="str">"claude-3-5-sonnet-20241022"</span>)</div>
+<div>local_llm  = Ollama(model=<span class="str">"llama3.2"</span>)  <span class="out"># local model</span></div>
+</div></div>
+<div class="card"><div class="card-title">Prompt Templates</div>
+<div class="cmd-block">
+<div><span class="cmd">from</span> langchain_core.prompts <span class="cmd">import</span> ChatPromptTemplate, PromptTemplate</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Simple template</span></div>
+<div>prompt = PromptTemplate.from_template(</div>
+<div>    <span class="str">"Mujhe {topic} ke baare mein {language} mein batao"</span></div>
+<div>)</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Chat template — system + human messages</span></div>
+<div>chat_prompt = ChatPromptTemplate.from_messages([</div>
+<div>    (<span class="str">"system"</span>, <span class="str">"Tum ek expert {role} ho. Hindi mein jawab do."</span>),</div>
+<div>    (<span class="str">"human"</span>, <span class="str">"{question}"</span>)</div>
+<div>])</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Use karo</span></div>
+<div>formatted = chat_prompt.format_messages(role=<span class="str">"developer"</span>, question=<span class="str">"API kya hai?"</span>)</div>
+</div></div>
+<div class="card"><div class="card-title">Output Parsers</div>
+<div class="cmd-block">
+<div><span class="cmd">from</span> langchain_core.output_parsers <span class="cmd">import</span> StrOutputParser, JsonOutputParser</div>
+<div><span class="cmd">from</span> langchain_core.pydantic_v1 <span class="cmd">import</span> BaseModel</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># String parser — simple text output</span></div>
+<div>parser = StrOutputParser()</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Structured output with Pydantic</span></div>
+<div><span class="cmd">class</span> <span class="fl">PersonInfo</span>(BaseModel):</div>
+<div>    name: str</div>
+<div>    age: int</div>
+<div>    skills: list[str]</div>
+<div>&nbsp;</div>
+<div>structured_llm = llm.with_structured_output(PersonInfo)</div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>ChatPromptTemplate mein system message kyun important hai?</li>
+<li>Temperature parameter kya karta hai? Kab 0 use karein, kab higher?</li>
+<li>Structured output kaise force karte hain LLM se? Pydantic ka role?</li>
+<li>Few-shot prompting kya hai? LangChain mein kaise implement karte hain?</li>
+<li>Prompt injection attacks kya hote hain? Kaise prevent karoge?</li>
+</ol></div>`},
+  {num:`03`,title:`LCEL — LangChain Expression Language`,level:`Fundamentals`,badge:`fund`,html:`
+<div class="card"><div class="card-title">LCEL Kya Hai?</div><ul class="note-list">
+<li>LangChain ka modern way — <strong>pipe operator (|)</strong> se components chain karo</li>
+<li>Declarative, composable, streaming support built-in</li>
+<li>Async, batch, streaming — sab automatically support hota hai</li>
+<li>LangSmith tracing automatically kaam karta hai LCEL chains ke saath</li>
+</ul></div>
+<div class="card"><div class="card-title">Basic LCEL Chains</div>
+<div class="cmd-block">
+<div><span class="cmd">from</span> langchain_core.prompts <span class="cmd">import</span> ChatPromptTemplate</div>
+<div><span class="cmd">from</span> langchain_openai <span class="cmd">import</span> ChatOpenAI</div>
+<div><span class="cmd">from</span> langchain_core.output_parsers <span class="cmd">import</span> StrOutputParser</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Pipe se chain banao — prompt | llm | parser</span></div>
+<div>prompt = ChatPromptTemplate.from_template(<span class="str">"{topic} explain karo"</span>)</div>
+<div>llm    = ChatOpenAI(model=<span class="str">"gpt-4o-mini"</span>)</div>
+<div>parser = StrOutputParser()</div>
+<div>&nbsp;</div>
+<div>chain = prompt | llm | parser</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Invoke karo</span></div>
+<div>result = chain.invoke({<span class="str">"topic"</span>: <span class="str">"RAG"</span>})</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Stream karo</span></div>
+<div><span class="cmd">for</span> chunk <span class="cmd">in</span> chain.stream({<span class="str">"topic"</span>: <span class="str">"RAG"</span>}):</div>
+<div>    <span class="cmd">print</span>(chunk, end=<span class="str">""</span>, flush=<span class="fl">True</span>)</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Batch karo — multiple inputs ek saath</span></div>
+<div>results = chain.batch([{<span class="str">"topic"</span>: <span class="str">"RAG"</span>}, {<span class="str">"topic"</span>: <span class="str">"Agents"</span>}])</div>
+</div></div>
+<div class="card"><div class="card-title">Advanced LCEL — RunnableParallel & RunnableLambda</div>
+<div class="cmd-block">
+<div><span class="cmd">from</span> langchain_core.runnables <span class="cmd">import</span> RunnableParallel, RunnableLambda, RunnablePassthrough</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Parallel mein multiple chains ek saath chalao</span></div>
+<div>parallel_chain = RunnableParallel({</div>
+<div>    <span class="str">"summary"</span>  : summary_chain,</div>
+<div>    <span class="str">"keywords"</span> : keyword_chain,</div>
+<div>    <span class="str">"sentiment"</span>: sentiment_chain</div>
+<div>})</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Input passthrough — original input aage bhi bhejo</span></div>
+<div>chain = RunnableParallel({</div>
+<div>    <span class="str">"question"</span>: RunnablePassthrough(),</div>
+<div>    <span class="str">"context"</span> : retriever</div>
+<div>}) | prompt | llm | parser</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Custom function chain mein add karo</span></div>
+<div>def add_context(x): <span class="cmd">return</span> x[<span class="str">"question"</span>].upper()</div>
+<div>chain = RunnableLambda(add_context) | llm</div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>LCEL kya hai? Purane LLMChain se kaise alag hai?</li>
+<li>RunnableParallel kab use karte hain? Performance benefit kya hai?</li>
+<li>RunnablePassthrough ka use case kya hai RAG mein?</li>
+<li>LCEL chain mein error handling kaise karte hain?</li>
+<li>Streaming response kaise implement karte hain LCEL se?</li>
+</ol></div>`},
+  {num:`04`,title:`RAG — Retrieval Augmented Generation`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">RAG kya hai aur kyun?</div><ul class="note-list">
+<li><strong>Problem:</strong> LLM ka knowledge cutoff hota hai — latest/private data nahi jaanta</li>
+<li><strong>Solution:</strong> User query se relevant documents dhundho → LLM ko context dedo</li>
+<li><strong>RAG Pipeline:</strong> Document load → Split → Embed → Store → Retrieve → Generate</li>
+<li>Fine-tuning se better — real-time data, cheaper, explainable, updatable</li>
+</ul></div>
+<div class="card"><div class="card-title">RAG Pipeline — Step by Step</div>
+<div class="flow">
+<div class="flow-box red">Documents</div>
+<div class="flow-arrow">→</div>
+<div class="flow-box" style="border-color:rgba(247,185,85,0.4);color:#f7b955;background:rgba(247,185,85,0.08)">Split</div>
+<div class="flow-arrow">→</div>
+<div class="flow-box" style="border-color:rgba(124,106,247,0.4);color:#a998ff;background:rgba(124,106,247,0.08)">Embed</div>
+<div class="flow-arrow">→</div>
+<div class="flow-box green">Vector DB</div>
+</div>
+<div class="flow" style="margin-top:8px">
+<div class="flow-box" style="border-color:rgba(247,185,85,0.4);color:#f7b955;background:rgba(247,185,85,0.08)">Query</div>
+<div class="flow-arrow">→</div>
+<div class="flow-box" style="border-color:rgba(124,106,247,0.4);color:#a998ff;background:rgba(124,106,247,0.08)">Retrieve</div>
+<div class="flow-arrow">→</div>
+<div class="flow-box green">LLM + Context</div>
+<div class="flow-arrow">→</div>
+<div class="flow-box red">Answer</div>
+</div></div>
+<div class="card"><div class="card-title">RAG Implementation</div>
+<div class="cmd-block">
+<div><span class="cmd">from</span> langchain_community.document_loaders <span class="cmd">import</span> PyPDFLoader, WebBaseLoader</div>
+<div><span class="cmd">from</span> langchain.text_splitter <span class="cmd">import</span> RecursiveCharacterTextSplitter</div>
+<div><span class="cmd">from</span> langchain_openai <span class="cmd">import</span> OpenAIEmbeddings, ChatOpenAI</div>
+<div><span class="cmd">from</span> langchain_community.vectorstores <span class="cmd">import</span> Chroma</div>
+<div><span class="cmd">from</span> langchain_core.prompts <span class="cmd">import</span> ChatPromptTemplate</div>
+<div><span class="cmd">from</span> langchain_core.runnables <span class="cmd">import</span> RunnablePassthrough</div>
+<div><span class="cmd">from</span> langchain_core.output_parsers <span class="cmd">import</span> StrOutputParser</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># 1. Load documents</span></div>
+<div>loader = PyPDFLoader(<span class="str">"document.pdf"</span>)</div>
+<div>docs = loader.load()</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># 2. Split into chunks</span></div>
+<div>splitter = RecursiveCharacterTextSplitter(chunk_size=<span class="fl">1000</span>, chunk_overlap=<span class="fl">200</span>)</div>
+<div>chunks = splitter.split_documents(docs)</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># 3. Embed aur store</span></div>
+<div>embeddings = OpenAIEmbeddings(model=<span class="str">"text-embedding-3-small"</span>)</div>
+<div>vectorstore = Chroma.from_documents(chunks, embeddings)</div>
+<div>retriever = vectorstore.as_retriever(search_kwargs={<span class="str">"k"</span>: <span class="fl">4</span>})</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># 4. RAG chain</span></div>
+<div>prompt = ChatPromptTemplate.from_template(<span class="str">"""</span></div>
+<div><span class="str">Sirf is context ke basis pe jawab do:</span></div>
+<div><span class="str">Context: {context}</span></div>
+<div><span class="str">Question: {question}"""</span>)</div>
+<div>&nbsp;</div>
+<div>rag_chain = (</div>
+<div>    {<span class="str">"context"</span>: retriever, <span class="str">"question"</span>: RunnablePassthrough()}</div>
+<div>    | prompt | ChatOpenAI() | StrOutputParser()</div>
+<div>)</div>
+<div>answer = rag_chain.invoke(<span class="str">"Document mein kya likha hai?"</span>)</div>
+</div></div>
+<div class="card"><div class="card-title">Text Splitters</div>
+<div class="arch-row"><div class="arch-label">RecursiveCharacter</div><div class="arch-val">Default choice — paragraph → sentence → word order mein split karta hai. Most reliable.</div></div>
+<div class="arch-row"><div class="arch-label">CharacterTextSplitter</div><div class="arch-val">Simple character-based split. Fast but naive.</div></div>
+<div class="arch-row"><div class="arch-label">MarkdownHeaderSplitter</div><div class="arch-val">Markdown headers ke hisaab se split — structure preserve karo.</div></div>
+<div class="arch-row"><div class="arch-label">SemanticChunker</div><div class="arch-val">Embedding similarity se split — semantically coherent chunks. Best quality.</div></div>
+<div class="tip-box"><p><strong>Chunk size tuning:</strong> chunk_size=1000, chunk_overlap=200 — good starting point. Overlap ensures context boundary pe information loss na ho.</p></div>
+</div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>RAG kya hai? Fine-tuning se kab better hai?</li>
+<li>Chunk size aur overlap kaise choose karoge? Trade-offs kya hain?</li>
+<li>RAG accuracy improve karne ke kya techniques hain?</li>
+<li>Naive RAG vs Advanced RAG (HyDE, re-ranking, multi-query) — explain karo.</li>
+<li>RAG pipeline mein hallucinations kaise reduce karoge?</li>
+</ol></div>`},
+  {num:`05`,title:`Vector Stores & Embeddings`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">Embeddings kya hote hain?</div><ul class="note-list">
+<li>Text → numerical vectors — similar meaning = similar vectors</li>
+<li><strong>Semantic search:</strong> Exact keyword match nahi — meaning match karo</li>
+<li>"Dog" aur "puppy" ke embeddings close honge — keywords alag hain but meaning similar</li>
+<li><strong>Dimensions:</strong> OpenAI text-embedding-3-small = 1536 dimensions</li>
+<li><strong>Cosine similarity:</strong> Do vectors ka angle measure karo — 1.0 = identical, 0 = unrelated</li>
+</ul></div>
+<div class="card"><div class="card-title">Embedding Models</div>
+<div class="arch-row"><div class="arch-label">OpenAI</div><div class="arch-val">text-embedding-3-small (fast, cheap) | text-embedding-3-large (best quality). Most popular.</div></div>
+<div class="arch-row"><div class="arch-label">HuggingFace</div><div class="arch-val">all-MiniLM-L6-v2 — free, local. Good quality. <code>langchain_community.HuggingFaceEmbeddings</code></div></div>
+<div class="arch-row"><div class="arch-label">Cohere</div><div class="arch-val">Multilingual embeddings — multiple languages support.</div></div>
+<div class="arch-row"><div class="arch-label">Ollama</div><div class="arch-val">Local embeddings — nomic-embed-text. Free, private, no API needed.</div></div>
+</div>
+<div class="card"><div class="card-title">Vector Stores</div>
+<div class="arch-row"><div class="arch-label">Chroma</div><div class="arch-val">Local, open-source, easy setup. Development aur small projects ke liye best.</div></div>
+<div class="arch-row"><div class="arch-label">FAISS</div><div class="arch-val">Facebook ka — in-memory, very fast similarity search. Large datasets ke liye.</div></div>
+<div class="arch-row"><div class="arch-label">Pinecone</div><div class="arch-val">Managed cloud vector DB — production ke liye, auto-scaling, fully managed.</div></div>
+<div class="arch-row"><div class="arch-label">Weaviate</div><div class="arch-val">Open-source, self-hosted ya cloud. Hybrid search (vector + keyword) built-in.</div></div>
+<div class="arch-row"><div class="arch-label">Qdrant</div><div class="arch-val">High performance, Rust-based. Filtering + vector search saath mein.</div></div>
+<div class="arch-row"><div class="arch-label">pgvector</div><div class="arch-val">PostgreSQL extension — existing DB mein vector search add karo.</div></div>
+</div>
+<div class="card"><div class="card-title">Retriever Types</div>
+<div class="cmd-block">
+<div><span class="cmt"># Basic similarity search</span></div>
+<div>retriever = vectorstore.as_retriever(search_kwargs={<span class="str">"k"</span>: <span class="fl">4</span>})</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># MMR — diversity ensure karo (similar chunks avoid)</span></div>
+<div>retriever = vectorstore.as_retriever(search_type=<span class="str">"mmr"</span>, search_kwargs={<span class="str">"k"</span>: <span class="fl">4</span>, <span class="str">"fetch_k"</span>: <span class="fl">20</span>})</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Score threshold — low quality results filter karo</span></div>
+<div>retriever = vectorstore.as_retriever(</div>
+<div>    search_type=<span class="str">"similarity_score_threshold"</span>,</div>
+<div>    search_kwargs={<span class="str">"score_threshold"</span>: <span class="fl">0.7</span>}</div>
+<div>)</div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Embeddings kya hote hain? Cosine similarity kaise kaam karti hai?</li>
+<li>Vector store choose karne ke criteria kya hain? Production ke liye kya recommend karoge?</li>
+<li>MMR retrieval kya hai? Regular similarity search se better kab?</li>
+<li>Hybrid search kya hota hai? Kab zaroori hai?</li>
+<li>Embedding model change karne pe kya karna padega existing vector store ka?</li>
+</ol></div>`},
+  {num:`06`,title:`Memory & Conversation`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">Conversation Memory kya hai?</div><ul class="note-list">
+<li>LLMs stateless hote hain — har call pe pichla conversation bhool jaate hain</li>
+<li>Memory = previous messages ko context mein include karna</li>
+<li><strong>Challenge:</strong> Context window limit hai — poora history nahi daal sakte</li>
+</ul></div>
+<div class="card"><div class="card-title">Memory Types</div>
+<div class="arch-row"><div class="arch-label">ConversationBufferMemory</div><div class="arch-val">Poora conversation store karo. Simple but context window overflow hoga long conversations mein.</div></div>
+<div class="arch-row"><div class="arch-label">ConversationWindowMemory</div><div class="arch-val">Last K messages rakho. <code>k=5</code> means last 5 turns. Memory bounded rahti hai.</div></div>
+<div class="arch-row"><div class="arch-label">ConversationSummaryMemory</div><div class="arch-val">Purani conversation ka summary banao LLM se. Long conversations ke liye best.</div></div>
+<div class="arch-row"><div class="arch-label">ConversationTokenBuffer</div><div class="arch-val">Token count ke hisaab se trim karo. Context window precisely control karo.</div></div>
+<div class="arch-row"><div class="arch-label">VectorStoreMemory</div><div class="arch-val">Conversation vectorize karo — relevant past memories retrieve karo semantically.</div></div>
+</div>
+<div class="card"><div class="card-title">Modern Approach — LangGraph State</div>
+<div class="cmd-block">
+<div><span class="cmd">from</span> langchain_core.messages <span class="cmd">import</span> HumanMessage, AIMessage, SystemMessage</div>
+<div><span class="cmd">from</span> langchain_openai <span class="cmd">import</span> ChatOpenAI</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Messages list manually manage karo — most control</span></div>
+<div>chat_history = []</div>
+<div>llm = ChatOpenAI(model=<span class="str">"gpt-4o"</span>)</div>
+<div>&nbsp;</div>
+<div><span class="cmd">def</span> <span class="fl">chat</span>(user_input):</div>
+<div>    chat_history.append(HumanMessage(content=user_input))</div>
+<div>    response = llm.invoke(chat_history)</div>
+<div>    chat_history.append(AIMessage(content=response.content))</div>
+<div>    <span class="cmd">return</span> response.content</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Persistent memory — DB mein store karo</span></div>
+<div><span class="cmd">from</span> langchain_community.chat_message_histories <span class="cmd">import</span> SQLChatMessageHistory</div>
+<div>history = SQLChatMessageHistory(session_id=<span class="str">"user_123"</span>, connection_string=<span class="str">"sqlite:///chat.db"</span>)</div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>LLM stateless kyun hota hai? Memory kaise implement karte hain?</li>
+<li>Different memory types mein kab kya choose karoge?</li>
+<li>Context window overflow hone pe kya strategies use karoge?</li>
+<li>Multi-user chatbot mein session isolation kaise karte hain?</li>
+<li>Persistent memory — Redis ya Database mein conversation kaise store karoge?</li>
+</ol></div>`},
+  {num:`07`,title:`Agents & Tools`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">Agents kya hote hain?</div><ul class="note-list">
+<li>LLM + Tools = Agent — LLM <strong>khud decide karta hai</strong> kaunsa tool use karna hai</li>
+<li><strong>ReAct pattern:</strong> Reason → Act → Observe → Repeat until done</li>
+<li>Fixed chain nahi — dynamic, autonomous decision making</li>
+<li><strong>Use cases:</strong> Research assistant, coding agent, data analysis, customer support</li>
+</ul></div>
+<div class="card"><div class="card-title">Tools Define Karna</div>
+<div class="cmd-block">
+<div><span class="cmd">from</span> langchain_core.tools <span class="cmd">import</span> tool</div>
+<div><span class="cmd">from</span> langchain_community.tools <span class="cmd">import</span> TavilySearchResults, WikipediaQueryRun</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Custom tool banana</span></div>
+<div>@tool</div>
+<div><span class="cmd">def</span> <span class="fl">calculate_age</span>(birth_year: int) -> str:</div>
+<div>    <span class="str">"""Calculate karo kisi ki age birth year se."""</span></div>
+<div>    age = <span class="fl">2025</span> - birth_year</div>
+<div>    <span class="cmd">return</span> <span class="fl">f</span><span class="str">"{age} saal ki age hai"</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Built-in tools</span></div>
+<div>search_tool = TavilySearchResults(max_results=<span class="fl">3</span>)</div>
+<div>wiki_tool = WikipediaQueryRun()</div>
+<div>&nbsp;</div>
+<div>tools = [calculate_age, search_tool, wiki_tool]</div>
+</div></div>
+<div class="card"><div class="card-title">Agent with Tool Calling</div>
+<div class="cmd-block">
+<div><span class="cmd">from</span> langchain.agents <span class="cmd">import</span> create_tool_calling_agent, AgentExecutor</div>
+<div><span class="cmd">from</span> langchain_core.prompts <span class="cmd">import</span> ChatPromptTemplate</div>
+<div>&nbsp;</div>
+<div>prompt = ChatPromptTemplate.from_messages([</div>
+<div>    (<span class="str">"system"</span>, <span class="str">"Tum ek helpful assistant ho. Tools use karo zaroori ho toh."</span>),</div>
+<div>    (<span class="str">"human"</span>, <span class="str">"{input}"</span>),</div>
+<div>    (<span class="str">"placeholder"</span>, <span class="str">"{agent_scratchpad}"</span>)</div>
+<div>])</div>
+<div>&nbsp;</div>
+<div>llm_with_tools = ChatOpenAI(model=<span class="str">"gpt-4o"</span>)</div>
+<div>agent = create_tool_calling_agent(llm_with_tools, tools, prompt)</div>
+<div>agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=<span class="fl">True</span>)</div>
+<div>&nbsp;</div>
+<div>result = agent_executor.invoke({<span class="str">"input"</span>: <span class="str">"Elon Musk ki age kya hai?"</span>})</div>
+</div></div>
+<div class="card"><div class="card-title">Popular Built-in Tools</div>
+<div class="chips">
+<span class="chip">TavilySearch — web search</span>
+<span class="chip">DuckDuckGoSearch</span>
+<span class="chip">WikipediaQueryRun</span>
+<span class="chip">PythonREPLTool</span>
+<span class="chip">ArXivQueryRun</span>
+<span class="chip">GooglePlacesTool</span>
+<span class="chip">SQLDatabaseToolkit</span>
+<span class="chip">FileManagementToolkit</span>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Agent aur Chain mein kya fundamental difference hai?</li>
+<li>ReAct pattern kya hai? Step by step explain karo.</li>
+<li>Tool calling vs function calling — kya difference hai?</li>
+<li>Agent ko infinite loop se kaise rokoge? Max iterations?</li>
+<li>Multi-agent systems kab zaroori hote hain? Coordination kaise karte hain?</li>
+</ol></div>`},
+  {num:`08`,title:`LangGraph — Stateful Agents`,level:`Advanced`,badge:`adv`,html:`
+<div class="card"><div class="card-title">LangGraph kya hai?</div><ul class="note-list">
+<li>LangChain ka extension — <strong>graph-based stateful workflows</strong> banao</li>
+<li>Nodes = functions/LLM calls | Edges = flow between nodes</li>
+<li>State persist karta hai across steps — complex multi-step agents ke liye</li>
+<li><strong>Cycles support:</strong> Loop karo jab tak condition satisfy na ho — agents ke liye zaroori</li>
+<li>AgentExecutor se better — zyada control, debugging easy, human-in-the-loop support</li>
+</ul></div>
+<div class="card"><div class="card-title">LangGraph Basic Agent</div>
+<div class="cmd-block">
+<div><span class="cmd">from</span> langgraph.graph <span class="cmd">import</span> StateGraph, END</div>
+<div><span class="cmd">from</span> langgraph.prebuilt <span class="cmd">import</span> ToolNode</div>
+<div><span class="cmd">from</span> typing <span class="cmd">import</span> TypedDict, Annotated</div>
+<div><span class="cmd">from</span> langchain_core.messages <span class="cmd">import</span> BaseMessage</div>
+<div><span class="cmd">import</span> operator</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># State define karo</span></div>
+<div><span class="cmd">class</span> <span class="fl">AgentState</span>(TypedDict):</div>
+<div>    messages: Annotated[list[BaseMessage], operator.add]</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Nodes define karo</span></div>
+<div><span class="cmd">def</span> <span class="fl">call_llm</span>(state: AgentState):</div>
+<div>    response = llm_with_tools.invoke(state[<span class="str">"messages"</span>])</div>
+<div>    <span class="cmd">return</span> {<span class="str">"messages"</span>: [response]}</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Graph banao</span></div>
+<div>graph = StateGraph(AgentState)</div>
+<div>graph.add_node(<span class="str">"llm"</span>, call_llm)</div>
+<div>graph.add_node(<span class="str">"tools"</span>, ToolNode(tools))</div>
+<div>graph.set_entry_point(<span class="str">"llm"</span>)</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Conditional edges — tool call hai toh tools node, nahi toh END</span></div>
+<div><span class="cmd">def</span> <span class="fl">should_continue</span>(state): <span class="cmd">return</span> <span class="str">"tools"</span> <span class="cmd">if</span> state[<span class="str">"messages"</span>][-<span class="fl">1</span>].tool_calls <span class="cmd">else</span> END</div>
+<div>graph.add_conditional_edges(<span class="str">"llm"</span>, should_continue)</div>
+<div>graph.add_edge(<span class="str">"tools"</span>, <span class="str">"llm"</span>)</div>
+<div>&nbsp;</div>
+<div>app = graph.compile()</div>
+<div>result = app.invoke({<span class="str">"messages"</span>: [HumanMessage(content=<span class="str">"Latest news kya hai?"</span>)]})</div>
+</div></div>
+<div class="card"><div class="card-title">LangGraph Features</div>
+<div class="arch-row"><div class="arch-label">Persistence</div><div class="arch-val">Checkpointing — state save karo, resume karo baad mein. SQLite ya Redis backend.</div></div>
+<div class="arch-row"><div class="arch-label">Human-in-Loop</div><div class="arch-val">Agent pause karo, human approval lo, phir continue karo — interrupt_before nodes.</div></div>
+<div class="arch-row"><div class="arch-label">Streaming</div><div class="arch-val">Har step ka output stream karo — real-time visibility into agent actions.</div></div>
+<div class="arch-row"><div class="arch-label">Multi-Agent</div><div class="arch-val">Multiple agents as subgraphs — supervisor pattern, swarm pattern.</div></div>
+</div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>LangGraph vs AgentExecutor — kyon LangGraph better hai complex agents ke liye?</li>
+<li>StateGraph mein state kaise define karte hain? Reducer kya hota hai?</li>
+<li>Human-in-the-loop kaise implement karte hain LangGraph mein?</li>
+<li>Checkpointing kya hai? Production mein kaise use karte hain?</li>
+<li>Multi-agent graph mein supervisor pattern kaise kaam karta hai?</li>
+</ol></div>`},
+  {num:`09`,title:`LangSmith — Debugging & Monitoring`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">LangSmith kya hai?</div><ul class="note-list">
+<li>LangChain ka <strong>observability aur evaluation platform</strong></li>
+<li>Every LLM call, chain step, tool use — sab trace hota hai</li>
+<li><strong>Debug karo:</strong> Kahan fail hua, kya input gaya, kya output aaya, kitna time laga</li>
+<li><strong>Evaluate karo:</strong> RAG accuracy, hallucination rate, response quality measure karo</li>
+<li><strong>Dataset + Testing:</strong> Regression test karo model/prompt changes pe</li>
+</ul></div>
+<div class="card"><div class="card-title">LangSmith Setup</div>
+<div class="cmd-block">
+<div><span class="cmt"># .env mein add karo</span></div>
+<div><span class="str">LANGCHAIN_TRACING_V2</span>=<span class="fl">true</span></div>
+<div><span class="str">LANGCHAIN_API_KEY</span>=lsv2_pt_...</div>
+<div><span class="str">LANGCHAIN_PROJECT</span>=<span class="str">"my-rag-app"</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Bas itna karo — automatically sab trace hoga</span></div>
+<div><span class="cmt"># Koi code change nahi chahiye!</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Manual tagging — traces organize karo</span></div>
+<div><span class="cmd">from</span> langsmith <span class="cmd">import</span> traceable</div>
+<div>&nbsp;</div>
+<div>@traceable(name=<span class="str">"my-rag-chain"</span>, tags=[<span class="str">"production"</span>])</div>
+<div><span class="cmd">def</span> <span class="fl">run_rag</span>(question: str) -> str:</div>
+<div>    <span class="cmd">return</span> rag_chain.invoke(question)</div>
+</div></div>
+<div class="card"><div class="card-title">Evaluation with LangSmith</div>
+<div class="cmd-block">
+<div><span class="cmd">from</span> langsmith.evaluation <span class="cmd">import</span> evaluate, LangChainStringEvaluator</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Dataset banao</span></div>
+<div>dataset = client.create_dataset(<span class="str">"rag-eval-dataset"</span>)</div>
+<div>client.create_examples(</div>
+<div>    inputs=[{<span class="str">"question"</span>: <span class="str">"Capital of India?"</span>}],</div>
+<div>    outputs=[{<span class="str">"answer"</span>: <span class="str">"New Delhi"</span>}],</div>
+<div>    dataset_id=dataset.id</div>
+<div>)</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Evaluate karo</span></div>
+<div>results = evaluate(</div>
+<div>    rag_chain.invoke,</div>
+<div>    data=<span class="str">"rag-eval-dataset"</span>,</div>
+<div>    evaluators=[LangChainStringEvaluator(<span class="str">"qa"</span>)]</div>
+<div>)</div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>LangSmith kyun zaroori hai? Bina iske kya problems hoti hain?</li>
+<li>RAG pipeline evaluate kaise karte hain? Metrics kya hone chahiye?</li>
+<li>LangSmith mein traces kaise filter aur search karte hain?</li>
+<li>Prompt regression testing kya hai? Kaise setup karoge?</li>
+<li>Production mein LLM costs monitor kaise karoge LangSmith se?</li>
+</ol></div>`},
+  {num:`10`,title:`Advanced RAG Techniques`,level:`Advanced`,badge:`adv`,html:`
+<div class="card"><div class="card-title">Naive RAG ke Problems</div><ul class="note-list">
+<li><strong>Poor retrieval:</strong> User query aur document language mein mismatch</li>
+<li><strong>Lost in middle:</strong> LLM long context ke middle mein information ignore karta hai</li>
+<li><strong>Irrelevant chunks:</strong> Semantically similar but contextually useless documents</li>
+<li><strong>Hallucinations:</strong> Retrieved context ke bawajood LLM galat jawab deta hai</li>
+</ul></div>
+<div class="card"><div class="card-title">Advanced Retrieval Techniques</div>
+<div class="arch-row"><div class="arch-label">HyDE</div><div class="arch-val">Hypothetical Document Embeddings — pehle hypothetical answer generate karo, phir usse retrieve karo. Query-doc mismatch solve.</div></div>
+<div class="arch-row"><div class="arch-label">Multi-Query</div><div class="arch-val">Ek query se multiple variations generate karo, sab se retrieve karo, combine karo. Better coverage.</div></div>
+<div class="arch-row"><div class="arch-label">Re-ranking</div><div class="arch-val">Initial results ko cross-encoder se re-rank karo. Cohere Rerank, BGE Reranker. Precision improve.</div></div>
+<div class="arch-row"><div class="arch-label">Hybrid Search</div><div class="arch-val">Vector search + BM25 keyword search combine karo. Dense + sparse retrieval.</div></div>
+<div class="arch-row"><div class="arch-label">Parent-Child</div><div class="arch-val">Chhote chunks retrieve karo (precision), bade parent chunks LLM ko do (context).</div></div>
+<div class="arch-row"><div class="arch-label">RAPTOR</div><div class="arch-val">Document tree banao summaries se, different levels pe retrieve karo — multi-level RAG.</div></div>
+</div>
+<div class="card"><div class="card-title">Multi-Query Retriever Code</div>
+<div class="cmd-block">
+<div><span class="cmd">from</span> langchain.retrievers.multi_query <span class="cmd">import</span> MultiQueryRetriever</div>
+<div><span class="cmd">from</span> langchain_openai <span class="cmd">import</span> ChatOpenAI</div>
+<div>&nbsp;</div>
+<div>multi_retriever = MultiQueryRetriever.from_llm(</div>
+<div>    retriever=vectorstore.as_retriever(),</div>
+<div>    llm=ChatOpenAI(temperature=<span class="fl">0</span>)</div>
+<div>)</div>
+<div><span class="cmt"># LLM automatically 3 query variations generate karega</span></div>
+<div>docs = multi_retriever.get_relevant_documents(<span class="str">"RAG kaise kaam karta hai?"</span>)</div>
+</div></div>
+<div class="card"><div class="card-title">Agentic RAG & CRAG</div><ul class="note-list">
+<li><strong>Agentic RAG:</strong> Agent decide kare kab retrieve karna hai, kab nahi</li>
+<li><strong>CRAG (Corrective RAG):</strong> Retrieved docs evaluate karo — irrelevant hain toh web search karo</li>
+<li><strong>Self-RAG:</strong> LLM khud evaluate kare ki answer grounded hai ya nahi</li>
+<li><strong>Adaptive RAG:</strong> Query complexity ke hisaab se retrieval strategy choose karo</li>
+</ul></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>HyDE technique kya hai? Kab use karoge?</li>
+<li>Re-ranking kya hai? Bi-encoder vs Cross-encoder difference?</li>
+<li>Parent-child chunking strategy kaise kaam kati hai?</li>
+<li>Hybrid search implement kaise karoge? RRF (Reciprocal Rank Fusion) kya hai?</li>
+<li>RAG evaluation metrics — Faithfulness, Answer Relevancy, Context Recall explain karo.</li>
+</ol></div>`},
+  {num:`11`,title:`Production Deployment`,level:`Advanced`,badge:`adv`,html:`
+<div class="card"><div class="card-title">LangServe — API Deployment</div>
+<div class="cmd-block">
+<div><span class="cmd">pip install</span> langserve[all] fastapi uvicorn</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># server.py</span></div>
+<div><span class="cmd">from</span> fastapi <span class="cmd">import</span> FastAPI</div>
+<div><span class="cmd">from</span> langserve <span class="cmd">import</span> add_routes</div>
+<div><span class="cmd">from</span> langchain_openai <span class="cmd">import</span> ChatOpenAI</div>
+<div><span class="cmd">from</span> langchain_core.output_parsers <span class="cmd">import</span> StrOutputParser</div>
+<div>&nbsp;</div>
+<div>app = FastAPI(title=<span class="str">"My LLM API"</span>)</div>
+<div>chain = ChatOpenAI() | StrOutputParser()</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Chain ko route pe serve karo</span></div>
+<div>add_routes(app, chain, path=<span class="str">"/chat"</span>)</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Run karo</span></div>
+<div><span class="cmd">uvicorn</span> server:app <span class="fl">--host 0.0.0.0 --port 8000</span></div>
+<div><span class="cmt"># Automatic: /chat/invoke, /chat/stream, /chat/batch endpoints</span></div>
+</div></div>
+<div class="card"><div class="card-title">Production Best Practices</div>
+<div class="arch-row"><div class="arch-label">Caching</div><div class="arch-val">Exact same queries cache karo — Redis semantic cache. Cost aur latency dramatically kam.</div></div>
+<div class="arch-row"><div class="arch-label">Rate Limiting</div><div class="arch-val">Per user API call limits. OpenAI rate limits handle karo — exponential backoff.</div></div>
+<div class="arch-row"><div class="arch-label">Streaming</div><div class="arch-val">Response stream karo — UX improve hoti hai. FastAPI + SSE ya WebSocket.</div></div>
+<div class="arch-row"><div class="arch-label">Fallbacks</div><div class="arch-val">Primary LLM fail hone pe backup use karo. <code>llm.with_fallbacks([backup_llm])</code></div></div>
+<div class="arch-row"><div class="arch-label">Cost Control</div><div class="arch-val">Cheap model pehle try karo, complex queries pe expensive model. Token limits set karo.</div></div>
+</div>
+<div class="card"><div class="card-title">Cost Optimization</div>
+<div class="cmd-block">
+<div><span class="cmt"># Semantic caching — similar queries cache karo</span></div>
+<div><span class="cmd">from</span> langchain.globals <span class="cmd">import</span> set_llm_cache</div>
+<div><span class="cmd">from</span> langchain_community.cache <span class="cmd">import</span> RedisSemanticCache</div>
+<div><span class="cmd">from</span> langchain_openai <span class="cmd">import</span> OpenAIEmbeddings</div>
+<div>&nbsp;</div>
+<div>set_llm_cache(RedisSemanticCache(</div>
+<div>    redis_url=<span class="str">"redis://localhost:6379"</span>,</div>
+<div>    embedding=OpenAIEmbeddings()</div>
+<div>))</div>
+<div>&nbsp;</div>
+<div><span class="cmt"># Fallback chain</span></div>
+<div>cheap_llm = ChatOpenAI(model=<span class="str">"gpt-4o-mini"</span>)</div>
+<div>expensive_llm = ChatOpenAI(model=<span class="str">"gpt-4o"</span>)</div>
+<div>smart_chain = cheap_llm.with_fallbacks([expensive_llm])</div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>LangChain app ko production mein deploy karne ka architecture kya hoga?</li>
+<li>LLM API costs control kaise karoge? Top 5 strategies kya hain?</li>
+<li>Semantic caching kya hai? Regular caching se kaise alag hai?</li>
+<li>LLM responses mein latency reduce karne ke techniques kya hain?</li>
+<li>Multi-tenant LLM app mein isolation kaise ensure karoge?</li>
+</ol></div>`},
+  {num:`12`,title:`LangChain Interview Prep`,level:`Advanced`,badge:`adv`,html:`
+<div class="card"><div class="card-title">Most Asked LangChain Interview Topics</div><ul class="note-list">
+<li><strong>RAG:</strong> Pipeline design, chunking strategy, retrieval techniques, evaluation</li>
+<li><strong>Agents:</strong> Tool creation, ReAct pattern, LangGraph, multi-agent</li>
+<li><strong>Memory:</strong> Types, context window management, persistent storage</li>
+<li><strong>LCEL:</strong> Chain composition, parallel execution, streaming</li>
+<li><strong>Production:</strong> Caching, cost optimization, monitoring, LangSmith</li>
+<li><strong>Vector DBs:</strong> Embedding models, similarity search, hybrid search</li>
+</ul></div>
+<div class="card"><div class="card-title">Key LangChain Concepts Recap</div>
+<div class="arch-row"><div class="arch-label">Runnable Interface</div><div class="arch-val">invoke, stream, batch, ainvoke — sab LCEL components implement karte hain. Standard API.</div></div>
+<div class="arch-row"><div class="arch-label">Document</div><div class="arch-val">page_content + metadata — LangChain ka core data unit RAG ke liye.</div></div>
+<div class="arch-row"><div class="arch-label">PromptTemplate</div><div class="arch-val">f-string jaisa but type-safe, composable, version controllable.</div></div>
+<div class="arch-row"><div class="arch-label">OutputParser</div><div class="arch-val">LLM string output ko structured data mein convert karo — JSON, Pydantic, List.</div></div>
+<div class="arch-row"><div class="arch-label">Callbacks</div><div class="arch-val">Lifecycle hooks — on_llm_start, on_chain_end, on_tool_error. Logging, monitoring.</div></div>
+</div>
+<div class="card"><div class="card-title">Common Architecture Patterns</div>
+<div class="flow" style="flex-direction:column;gap:10px">
+<div style="display:flex;gap:6px;align-items:center">
+<div class="flow-box green" style="min-width:90px;text-align:center">RAG App</div>
+<div class="flow-arrow">:</div>
+<div style="font-size:13px;color:#c4bfe8">User → FastAPI → RAG Chain → Vector DB + LLM → Response</div>
+</div>
+<div style="display:flex;gap:6px;align-items:center">
+<div class="flow-box red" style="min-width:90px;text-align:center">Agent</div>
+<div class="flow-arrow">:</div>
+<div style="font-size:13px;color:#c4bfe8">User → LangGraph → LLM → Tools (Search/DB/API) → LLM → Response</div>
+</div>
+<div style="display:flex;gap:6px;align-items:center">
+<div class="flow-box" style="min-width:90px;text-align:center;border-color:rgba(247,185,85,0.4);color:#f7b955;background:rgba(247,185,85,0.08)">Chatbot</div>
+<div class="flow-arrow">:</div>
+<div style="font-size:13px;color:#c4bfe8">User → Memory + RAG Chain → LLM → Stream Response</div>
+</div>
+</div></div>
+<div class="card"><div class="card-title">Resources & Learning Path</div>
+<div class="chips">
+<span class="chip">📘 LangChain Docs (python.langchain.com)</span>
+<span class="chip">🎥 LangChain YouTube Channel</span>
+<span class="chip">🎮 LangChain Academy (free course)</span>
+<span class="chip">📖 LangGraph Documentation</span>
+<span class="chip">🔬 LangSmith Cookbook</span>
+<span class="chip">🐙 LangChain GitHub Examples</span>
+<span class="chip">📝 LCEL How-to Guides</span>
+<span class="chip">🤗 HuggingFace + LangChain integration</span>
+</div></div>
+<div class="q-section"><div class="q-title">Final Interview Questions</div><ol class="q-list">
+<li>End-to-end RAG system design karo — architecture, components, tech stack.</li>
+<li>LangChain app mein hallucinations kaise detect aur reduce karoge?</li>
+<li>Multi-agent customer support system kaise banaaoge LangGraph se?</li>
+<li>RAG vs Fine-tuning — kab kya? Dono ko combine kab karte hain?</li>
+<li>LLM application ke liye evaluation framework kaise design karoge?</li>
+<li>Production mein LangChain app ka cost $10k/month hai — kaise optimize karoge?</li>
+</ol></div>`}
+];
+
+COURSES.push({
+  id:"langchain",
+  icon:"🦜",
+  title:"LangChain & LLMs",
+  desc:"LangChain, RAG systems, Agents, LangGraph, Vector DBs aur production LLM apps",
+  count:12,
+  accent:"#16a34a",
+  accentBg:"rgba(22,163,74,0.1)",
+  accentTabBg:"rgba(22,163,74,0.15)",
+  accentBorder:"rgba(22,163,74,0.3)",
+  accentRowBg:"rgba(22,163,74,0.1)",
+  accentDim:"rgba(22,163,74,0.25)",
+  tabLabels:["Basics","Models & Prompts","LCEL","RAG Pipeline","Vector Stores","Memory","Agents","LangGraph","LangSmith","Adv RAG","Production","Interview Prep"]
+});
+
+// MySQL & DBMS Topics
+TOPICS["mysql"] = [
+  {num:`01`,title:`DBMS Fundamentals`,level:`Fundamentals`,badge:`fund`,html:`
+<div class="card"><div class="card-title">DBMS kya hai?</div><ul class="note-list">
+<li><strong>Database Management System:</strong> Data ko systematically store, retrieve aur manage karne ka software</li>
+<li><strong>DBMS vs File System:</strong> Redundancy control, concurrent access, security, backup — sab DBMS handle karta hai</li>
+<li><strong>Types:</strong> Relational (MySQL, PostgreSQL) | NoSQL (MongoDB) | Hierarchical | Network | Object-oriented</li>
+<li><strong>RDBMS:</strong> Relational DBMS — data tables mein store hota hai rows aur columns mein</li>
+<li><strong>Popular RDBMS:</strong> MySQL, PostgreSQL, Oracle, MS SQL Server, SQLite</li>
+</ul></div>
+<div class="card"><div class="card-title">DBMS Architecture</div>
+<div class="arch-row"><div class="arch-label">External Level</div><div class="arch-val">User view — har user sirf apna relevant data dekhta hai. Views is layer pe hoti hain.</div></div>
+<div class="arch-row"><div class="arch-label">Conceptual Level</div><div class="arch-val">Logical structure — tables, relationships, constraints define hote hain. DBA ka level.</div></div>
+<div class="arch-row"><div class="arch-label">Internal Level</div><div class="arch-val">Physical storage — data actually kaise store ho raha hai disk pe. Indexes, file organization.</div></div>
+<div class="tip-box"><p><strong>Data Independence:</strong> Physical independence = storage badlo bina logical change ke | Logical independence = schema badlo bina application change ke</p></div>
+</div>
+<div class="card"><div class="card-title">Keys in DBMS</div>
+<div class="arch-row"><div class="arch-label">Primary Key</div><div class="arch-val">Unique + NOT NULL — ek row ko uniquely identify kare. Ek table mein sirf ek PK.</div></div>
+<div class="arch-row"><div class="arch-label">Foreign Key</div><div class="arch-val">Dusre table ka PK reference karo — referential integrity maintain karo.</div></div>
+<div class="arch-row"><div class="arch-label">Candidate Key</div><div class="arch-val">Sab columns jo PK ban sakte hain — minimal superkey.</div></div>
+<div class="arch-row"><div class="arch-label">Composite Key</div><div class="arch-val">2+ columns milke ek row uniquely identify karein.</div></div>
+<div class="arch-row"><div class="arch-label">Super Key</div><div class="arch-val">Any set of columns jo row uniquely identify kare — may have extra columns.</div></div>
+<div class="arch-row"><div class="arch-label">Surrogate Key</div><div class="arch-val">System-generated artificial key — auto_increment ID. Natural meaning nahi hoti.</div></div>
+</div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>DBMS aur RDBMS mein kya fark hai?</li>
+<li>Primary key aur Unique key mein kya difference hai?</li>
+<li>Foreign key constraint kya karta hai? Violation pe kya hota hai?</li>
+<li>Candidate key aur Super key mein kya relation hai?</li>
+<li>DBMS ki 3-tier architecture explain karo.</li>
+<li>Surrogate key vs Natural key — kab kya prefer karoge?</li>
+</ol></div>`},
+  {num:`02`,title:`ACID Properties`,level:`Fundamentals`,badge:`fund`,html:`
+<div class="card"><div class="card-title">ACID kya hai?</div><ul class="note-list">
+<li>Transaction ke 4 properties jo data integrity guarantee karte hain</li>
+<li>Bank transfer example — Rs. 1000 A se B ko transfer karo</li>
+</ul></div>
+<div class="card"><div class="card-title">ACID Properties Detail</div>
+<div class="arch-row"><div class="arch-label">Atomicity</div><div class="arch-val">All or Nothing — ya poora transaction execute hoga ya bilkul nahi. Crash hone pe rollback.</div></div>
+<div class="arch-row"><div class="arch-label">Consistency</div><div class="arch-val">Transaction ke baad DB valid state mein rahe — constraints, rules sab satisfy hone chahiye.</div></div>
+<div class="arch-row"><div class="arch-label">Isolation</div><div class="arch-val">Concurrent transactions ek dusre ko affect na karein — jaisa ek ek kar ke chal rahe ho.</div></div>
+<div class="arch-row"><div class="arch-label">Durability</div><div class="arch-val">Committed transaction permanently save ho — crash hone pe bhi data lost nahi hoga.</div></div>
+</div>
+<div class="card"><div class="card-title">Transaction Isolation Levels</div>
+<div class="arch-row"><div class="arch-label">Read Uncommitted</div><div class="arch-val">Dirty reads possible — dusre uncommitted data padh sakte ho. Sabse fast, sabse unsafe.</div></div>
+<div class="arch-row"><div class="arch-label">Read Committed</div><div class="arch-val">Dirty reads nahi — sirf committed data padho. Non-repeatable reads possible. Oracle default.</div></div>
+<div class="arch-row"><div class="arch-label">Repeatable Read</div><div class="arch-val">Non-repeatable reads nahi — same row baar baar same value milegi. Phantom reads possible. MySQL default.</div></div>
+<div class="arch-row"><div class="arch-label">Serializable</div><div class="arch-val">Phantom reads bhi nahi — sabse safe, sabse slow. Full isolation.</div></div>
+<div class="warn-box"><p><strong>Problems:</strong> Dirty Read = uncommitted data padha | Non-Repeatable Read = same row different values | Phantom Read = naye rows appear/disappear</p></div>
+</div>
+<div class="card"><div class="card-title">Transaction Commands</div>
+<div class="cmd-block">
+<div><span class="cmd">START TRANSACTION</span><span class="out">;</span>  <span class="out">-- transaction shuru karo</span></div>
+<div><span class="cmd">UPDATE</span> accounts <span class="cmd">SET</span> balance = balance - <span class="fl">1000</span> <span class="cmd">WHERE</span> id = <span class="fl">1</span><span class="out">;</span></div>
+<div><span class="cmd">UPDATE</span> accounts <span class="cmd">SET</span> balance = balance + <span class="fl">1000</span> <span class="cmd">WHERE</span> id = <span class="fl">2</span><span class="out">;</span></div>
+<div><span class="cmd">COMMIT</span><span class="out">;</span>        <span class="out">-- permanent save karo</span></div>
+<div><span class="out">-- ya</span></div>
+<div><span class="cmd">ROLLBACK</span><span class="out">;</span>      <span class="out">-- undo karo sab kuch</span></div>
+<div>&nbsp;</div>
+<div><span class="cmd">SAVEPOINT</span> sp1<span class="out">;</span>  <span class="out">-- partial rollback ke liye</span></div>
+<div><span class="cmd">ROLLBACK TO</span> sp1<span class="out">;</span></div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>ACID properties kya hain? Har ek real example se explain karo.</li>
+<li>Dirty read, Non-repeatable read, Phantom read — difference explain karo.</li>
+<li>MySQL ka default isolation level kya hai? Kyun?</li>
+<li>Isolation level badhane se performance pe kya effect padta hai?</li>
+<li>Distributed transactions mein ACID kaise maintain karte hain?</li>
+</ol></div>`},
+  {num:`03`,title:`Normalization`,level:`Fundamentals`,badge:`fund`,html:`
+<div class="card"><div class="card-title">Normalization kya hai?</div><ul class="note-list">
+<li>Database design technique — <strong>redundancy remove karo</strong>, anomalies avoid karo</li>
+<li><strong>Anomalies:</strong> Insertion anomaly | Update anomaly | Deletion anomaly</li>
+<li>Normal Forms ek ke baad ek follow karte hain — 1NF → 2NF → 3NF → BCNF</li>
+</ul></div>
+<div class="card"><div class="card-title">Normal Forms</div>
+<div class="arch-row"><div class="arch-label">1NF</div><div class="arch-val">Atomic values — har cell mein ek hi value. No repeating groups. No multi-valued attributes.</div></div>
+<div class="arch-row"><div class="arch-label">2NF</div><div class="arch-val">1NF + No partial dependency — non-key attributes poore PK pe depend karein, uske part pe nahi.</div></div>
+<div class="arch-row"><div class="arch-label">3NF</div><div class="arch-val">2NF + No transitive dependency — non-key attribute directly PK pe depend kare, kisi aur non-key se nahi.</div></div>
+<div class="arch-row"><div class="arch-label">BCNF</div><div class="arch-val">Stronger 3NF — har determinant candidate key hona chahiye. 3NF ka edge case solve karta hai.</div></div>
+<div class="arch-row"><div class="arch-label">4NF</div><div class="arch-val">BCNF + No multi-valued dependencies.</div></div>
+</div>
+<div class="card"><div class="card-title">Example — Normalization Step by Step</div>
+<div class="cmd-block">
+<div><span class="cmt">-- Unnormalized: Student(id, name, courses, phone_numbers)</span></div>
+<div><span class="cmt">-- 1NF: phone_numbers ko alag karo</span></div>
+<div><span class="cmd">CREATE TABLE</span> student_phones (student_id <span class="fl">INT</span>, phone <span class="fl">VARCHAR</span>(<span class="fl">15</span>))<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- 2NF: (student_id, course_id) PK hai</span></div>
+<div><span class="cmt">-- student_name sirf student_id pe depend karta hai — partial dependency!</span></div>
+<div><span class="cmt">-- Fix: Students aur Enrollments alag tables</span></div>
+<div><span class="cmd">CREATE TABLE</span> students (id <span class="fl">INT PRIMARY KEY</span>, name <span class="fl">VARCHAR</span>(<span class="fl">50</span>))<span class="out">;</span></div>
+<div><span class="cmd">CREATE TABLE</span> enrollments (student_id <span class="fl">INT</span>, course_id <span class="fl">INT</span>)<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- 3NF: dept_name → dept_head transitive dependency</span></div>
+<div><span class="cmt">-- Fix: Departments alag table</span></div>
+<div><span class="cmd">CREATE TABLE</span> departments (dept_id <span class="fl">INT PRIMARY KEY</span>, name <span class="fl">VARCHAR</span>(<span class="fl">50</span>), head <span class="fl">VARCHAR</span>(<span class="fl">50</span>))<span class="out">;</span></div>
+</div></div>
+<div class="card"><div class="card-title">Denormalization — Kab aur Kyun?</div><ul class="note-list">
+<li>Performance ke liye intentionally redundancy add karo</li>
+<li>Reads bahut zyada hain, joins expensive hain — denormalize karo</li>
+<li><strong>Techniques:</strong> Duplicate columns, pre-computed aggregates, merged tables</li>
+<li>Write complexity badhti hai, storage badhta hai — trade-off hai</li>
+</ul></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>1NF, 2NF, 3NF explain karo with examples.</li>
+<li>Partial dependency aur Transitive dependency mein kya fark hai?</li>
+<li>BCNF aur 3NF mein kya difference hai?</li>
+<li>Kab denormalize karna chahiye? Trade-offs kya hain?</li>
+<li>Functional dependency kya hoti hai?</li>
+</ol></div>`},
+  {num:`04`,title:`SQL Basics — DDL & DML`,level:`Fundamentals`,badge:`fund`,html:`
+<div class="card"><div class="card-title">SQL Commands Categories</div>
+<div class="arch-row"><div class="arch-label">DDL</div><div class="arch-val">Data Definition Language — CREATE, ALTER, DROP, TRUNCATE, RENAME. Schema define karo.</div></div>
+<div class="arch-row"><div class="arch-label">DML</div><div class="arch-val">Data Manipulation Language — SELECT, INSERT, UPDATE, DELETE. Data manipulate karo.</div></div>
+<div class="arch-row"><div class="arch-label">DCL</div><div class="arch-val">Data Control Language — GRANT, REVOKE. Permissions manage karo.</div></div>
+<div class="arch-row"><div class="arch-label">TCL</div><div class="arch-val">Transaction Control — COMMIT, ROLLBACK, SAVEPOINT. Transactions manage karo.</div></div>
+</div>
+<div class="card"><div class="card-title">DDL Commands</div>
+<div class="cmd-block">
+<div><span class="cmt">-- Table create karo</span></div>
+<div><span class="cmd">CREATE TABLE</span> employees (</div>
+<div>  id         <span class="fl">INT AUTO_INCREMENT PRIMARY KEY</span>,</div>
+<div>  name       <span class="fl">VARCHAR</span>(<span class="fl">100</span>) <span class="fl">NOT NULL</span>,</div>
+<div>  email      <span class="fl">VARCHAR</span>(<span class="fl">150</span>) <span class="fl">UNIQUE</span>,</div>
+<div>  salary     <span class="fl">DECIMAL</span>(<span class="fl">10,2</span>) <span class="fl">DEFAULT</span> <span class="fl">0.00</span>,</div>
+<div>  dept_id    <span class="fl">INT</span>,</div>
+<div>  created_at <span class="fl">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>,</div>
+<div>  <span class="fl">FOREIGN KEY</span> (dept_id) <span class="fl">REFERENCES</span> departments(id) <span class="fl">ON DELETE SET NULL</span></div>
+<div>)<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- Table modify karo</span></div>
+<div><span class="cmd">ALTER TABLE</span> employees <span class="cmd">ADD COLUMN</span> phone <span class="fl">VARCHAR</span>(<span class="fl">15</span>)<span class="out">;</span></div>
+<div><span class="cmd">ALTER TABLE</span> employees <span class="cmd">MODIFY COLUMN</span> name <span class="fl">VARCHAR</span>(<span class="fl">200</span>)<span class="out">;</span></div>
+<div><span class="cmd">ALTER TABLE</span> employees <span class="cmd">DROP COLUMN</span> phone<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- DELETE vs TRUNCATE vs DROP</span></div>
+<div><span class="cmd">DELETE FROM</span> employees <span class="cmd">WHERE</span> id = <span class="fl">5</span><span class="out">;</span>  <span class="out">-- specific rows, rollback possible</span></div>
+<div><span class="cmd">TRUNCATE TABLE</span> employees<span class="out">;</span>           <span class="out">-- sab rows, fast, no rollback</span></div>
+<div><span class="cmd">DROP TABLE</span> employees<span class="out">;</span>               <span class="out">-- table hi delete kar do</span></div>
+</div></div>
+<div class="card"><div class="card-title">DML Commands</div>
+<div class="cmd-block">
+<div><span class="cmt">-- Insert</span></div>
+<div><span class="cmd">INSERT INTO</span> employees (name, email, salary) <span class="cmd">VALUES</span></div>
+<div>  (<span class="str">"Rahul"</span>, <span class="str">"rahul@email.com"</span>, <span class="fl">50000</span>),</div>
+<div>  (<span class="str">"Priya"</span>, <span class="str">"priya@email.com"</span>, <span class="fl">60000</span>)<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- Update</span></div>
+<div><span class="cmd">UPDATE</span> employees <span class="cmd">SET</span> salary = salary * <span class="fl">1.10</span></div>
+<div><span class="cmd">WHERE</span> dept_id = <span class="fl">3</span> <span class="cmd">AND</span> salary &lt; <span class="fl">80000</span><span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- Delete</span></div>
+<div><span class="cmd">DELETE FROM</span> employees <span class="cmd">WHERE</span> created_at &lt; <span class="str">"2020-01-01"</span><span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- Upsert (Insert or Update)</span></div>
+<div><span class="cmd">INSERT INTO</span> employees (id, name, salary) <span class="cmd">VALUES</span> (<span class="fl">1</span>, <span class="str">"Rahul"</span>, <span class="fl">55000</span>)</div>
+<div><span class="cmd">ON DUPLICATE KEY UPDATE</span> salary = <span class="fl">55000</span><span class="out">;</span></div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>DELETE vs TRUNCATE vs DROP — detailed difference kya hai?</li>
+<li>ON DELETE CASCADE vs ON DELETE SET NULL — kab kya use karoge?</li>
+<li>AUTO_INCREMENT reset kaise karte hain MySQL mein?</li>
+<li>CHAR vs VARCHAR vs TEXT — kab kya use karoge?</li>
+<li>NULL values ke saath kaise deal karte hain SQL mein?</li>
+</ol></div>`},
+  {num:`05`,title:`SQL Queries — SELECT & Joins`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">SELECT Query Structure</div>
+<div class="cmd-block">
+<div><span class="cmt">-- SELECT execution order (writing order alag, execution order alag!)</span></div>
+<div><span class="out">-- FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT</span></div>
+<div>&nbsp;</div>
+<div><span class="cmd">SELECT</span> d.name <span class="cmd">AS</span> dept, <span class="cmd">COUNT</span>(e.id) <span class="cmd">AS</span> emp_count, <span class="cmd">AVG</span>(e.salary) <span class="cmd">AS</span> avg_sal</div>
+<div><span class="cmd">FROM</span> employees e</div>
+<div><span class="cmd">JOIN</span> departments d <span class="cmd">ON</span> e.dept_id = d.id</div>
+<div><span class="cmd">WHERE</span> e.salary > <span class="fl">30000</span></div>
+<div><span class="cmd">GROUP BY</span> d.name</div>
+<div><span class="cmd">HAVING</span> <span class="cmd">COUNT</span>(e.id) > <span class="fl">5</span></div>
+<div><span class="cmd">ORDER BY</span> avg_sal <span class="cmd">DESC</span></div>
+<div><span class="cmd">LIMIT</span> <span class="fl">10</span> <span class="cmd">OFFSET</span> <span class="fl">0</span><span class="out">;</span></div>
+</div></div>
+<div class="card"><div class="card-title">JOIN Types</div>
+<div class="arch-row"><div class="arch-label">INNER JOIN</div><div class="arch-val">Sirf matching rows dono tables mein. Non-matching rows exclude.</div></div>
+<div class="arch-row"><div class="arch-label">LEFT JOIN</div><div class="arch-val">Sab left table rows + matching right rows. Right mein nahi toh NULL.</div></div>
+<div class="arch-row"><div class="arch-label">RIGHT JOIN</div><div class="arch-val">Sab right table rows + matching left rows. Left mein nahi toh NULL.</div></div>
+<div class="arch-row"><div class="arch-label">FULL OUTER JOIN</div><div class="arch-val">Dono tables ke sab rows. MySQL mein nahi — LEFT UNION RIGHT se simulate karo.</div></div>
+<div class="arch-row"><div class="arch-label">CROSS JOIN</div><div class="arch-val">Cartesian product — har row har dusri row se combine. M×N rows.</div></div>
+<div class="arch-row"><div class="arch-label">SELF JOIN</div><div class="arch-val">Table apne aap se join — hierarchy, manager-employee relationships.</div></div>
+<div class="cmd-block">
+<div><span class="cmt">-- Self join example: Manager ka naam nikalo</span></div>
+<div><span class="cmd">SELECT</span> e.name <span class="cmd">AS</span> employee, m.name <span class="cmd">AS</span> manager</div>
+<div><span class="cmd">FROM</span> employees e</div>
+<div><span class="cmd">LEFT JOIN</span> employees m <span class="cmd">ON</span> e.manager_id = m.id<span class="out">;</span></div>
+</div></div>
+<div class="card"><div class="card-title">Aggregate Functions & GROUP BY</div>
+<div class="cmd-block">
+<div><span class="cmt">-- Aggregate functions</span></div>
+<div><span class="cmd">SELECT</span></div>
+<div>  <span class="cmd">COUNT</span>(*),           <span class="out">-- total rows</span></div>
+<div>  <span class="cmd">COUNT</span>(DISTINCT dept_id),  <span class="out">-- unique depts</span></div>
+<div>  <span class="cmd">SUM</span>(salary),        <span class="out">-- total salary</span></div>
+<div>  <span class="cmd">AVG</span>(salary),        <span class="out">-- average</span></div>
+<div>  <span class="cmd">MAX</span>(salary),        <span class="out">-- highest</span></div>
+<div>  <span class="cmd">MIN</span>(salary)         <span class="out">-- lowest</span></div>
+<div><span class="cmd">FROM</span> employees<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- WHERE vs HAVING</span></div>
+<div><span class="cmt">-- WHERE: individual rows filter karo (GROUP BY se pehle)</span></div>
+<div><span class="cmt">-- HAVING: groups filter karo (GROUP BY ke baad)</span></div>
+<div><span class="cmd">SELECT</span> dept_id, <span class="cmd">AVG</span>(salary) avg_sal</div>
+<div><span class="cmd">FROM</span> employees</div>
+<div><span class="cmd">WHERE</span> active = <span class="fl">1</span>              <span class="out">-- row level filter</span></div>
+<div><span class="cmd">GROUP BY</span> dept_id</div>
+<div><span class="cmd">HAVING</span> <span class="cmd">AVG</span>(salary) > <span class="fl">50000</span><span class="out">;</span>  <span class="out">-- group level filter</span></div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>SQL query execution order kya hoti hai? SELECT pehle kyun nahi hota?</li>
+<li>INNER JOIN vs LEFT JOIN — kab kya use karoge? Example do.</li>
+<li>WHERE vs HAVING — exact difference explain karo.</li>
+<li>Second highest salary nikalne ke 3 tarike batao.</li>
+<li>Duplicate rows find karke delete karne ki query likho.</li>
+<li>Self join kab use karte hain? Manager-Employee hierarchy query likho.</li>
+</ol></div>`},
+  {num:`06`,title:`Subqueries & Advanced SQL`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">Subqueries</div>
+<div class="cmd-block">
+<div><span class="cmt">-- Scalar subquery (single value return)</span></div>
+<div><span class="cmd">SELECT</span> name, salary</div>
+<div><span class="cmd">FROM</span> employees</div>
+<div><span class="cmd">WHERE</span> salary > (<span class="cmd">SELECT AVG</span>(salary) <span class="cmd">FROM</span> employees)<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- IN subquery</span></div>
+<div><span class="cmd">SELECT</span> name <span class="cmd">FROM</span> employees</div>
+<div><span class="cmd">WHERE</span> dept_id <span class="cmd">IN</span> (<span class="cmd">SELECT</span> id <span class="cmd">FROM</span> departments <span class="cmd">WHERE</span> location = <span class="str">"Mumbai"</span>)<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- Correlated subquery (outer query pe depend karta hai)</span></div>
+<div><span class="cmd">SELECT</span> e1.name, e1.salary</div>
+<div><span class="cmd">FROM</span> employees e1</div>
+<div><span class="cmd">WHERE</span> salary > (<span class="cmd">SELECT AVG</span>(salary) <span class="cmd">FROM</span> employees e2</div>
+<div>               <span class="cmd">WHERE</span> e2.dept_id = e1.dept_id)<span class="out">;</span></div>
+<div><span class="cmt">-- Apne department ki average se zyada salary wale employees</span></div>
+</div></div>
+<div class="card"><div class="card-title">CTEs — Common Table Expressions</div>
+<div class="cmd-block">
+<div><span class="cmt">-- CTE — readable, reusable temporary result set</span></div>
+<div><span class="cmd">WITH</span> dept_stats <span class="cmd">AS</span> (</div>
+<div>  <span class="cmd">SELECT</span> dept_id, <span class="cmd">AVG</span>(salary) avg_sal, <span class="cmd">COUNT</span>(*) emp_count</div>
+<div>  <span class="cmd">FROM</span> employees</div>
+<div>  <span class="cmd">GROUP BY</span> dept_id</div>
+<div>),</div>
+<div>top_depts <span class="cmd">AS</span> (</div>
+<div>  <span class="cmd">SELECT</span> * <span class="cmd">FROM</span> dept_stats <span class="cmd">WHERE</span> emp_count > <span class="fl">10</span></div>
+<div>)</div>
+<div><span class="cmd">SELECT</span> d.name, td.avg_sal</div>
+<div><span class="cmd">FROM</span> top_depts td</div>
+<div><span class="cmd">JOIN</span> departments d <span class="cmd">ON</span> td.dept_id = d.id<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- Recursive CTE — hierarchy traverse karo</span></div>
+<div><span class="cmd">WITH RECURSIVE</span> emp_hierarchy <span class="cmd">AS</span> (</div>
+<div>  <span class="cmd">SELECT</span> id, name, manager_id, <span class="fl">0</span> <span class="cmd">AS</span> level</div>
+<div>  <span class="cmd">FROM</span> employees <span class="cmd">WHERE</span> manager_id <span class="cmd">IS NULL</span>   <span class="out">-- root (CEO)</span></div>
+<div>  <span class="cmd">UNION ALL</span></div>
+<div>  <span class="cmd">SELECT</span> e.id, e.name, e.manager_id, h.level + <span class="fl">1</span></div>
+<div>  <span class="cmd">FROM</span> employees e</div>
+<div>  <span class="cmd">JOIN</span> emp_hierarchy h <span class="cmd">ON</span> e.manager_id = h.id</div>
+<div>)</div>
+<div><span class="cmd">SELECT</span> * <span class="cmd">FROM</span> emp_hierarchy<span class="out">;</span></div>
+</div></div>
+<div class="card"><div class="card-title">Window Functions</div>
+<div class="cmd-block">
+<div><span class="cmt">-- ROW_NUMBER, RANK, DENSE_RANK</span></div>
+<div><span class="cmd">SELECT</span> name, salary, dept_id,</div>
+<div>  <span class="cmd">ROW_NUMBER</span>() <span class="cmd">OVER</span> (<span class="cmd">PARTITION BY</span> dept_id <span class="cmd">ORDER BY</span> salary <span class="cmd">DESC</span>) <span class="cmd">AS</span> row_num,</div>
+<div>  <span class="cmd">RANK</span>()       <span class="cmd">OVER</span> (<span class="cmd">PARTITION BY</span> dept_id <span class="cmd">ORDER BY</span> salary <span class="cmd">DESC</span>) <span class="cmd">AS</span> rnk,</div>
+<div>  <span class="cmd">DENSE_RANK</span>() <span class="cmd">OVER</span> (<span class="cmd">PARTITION BY</span> dept_id <span class="cmd">ORDER BY</span> salary <span class="cmd">DESC</span>) <span class="cmd">AS</span> dense_rnk,</div>
+<div>  <span class="cmd">LAG</span>(salary)  <span class="cmd">OVER</span> (<span class="cmd">ORDER BY</span> salary)  <span class="cmd">AS</span> prev_salary,</div>
+<div>  <span class="cmd">LEAD</span>(salary) <span class="cmd">OVER</span> (<span class="cmd">ORDER BY</span> salary)  <span class="cmd">AS</span> next_salary</div>
+<div><span class="cmd">FROM</span> employees<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- Nth highest salary (using DENSE_RANK)</span></div>
+<div><span class="cmd">SELECT</span> salary <span class="cmd">FROM</span> (</div>
+<div>  <span class="cmd">SELECT</span> salary, <span class="cmd">DENSE_RANK</span>() <span class="cmd">OVER</span> (<span class="cmd">ORDER BY</span> salary <span class="cmd">DESC</span>) dr</div>
+<div>  <span class="cmd">FROM</span> employees</div>
+<div>) t <span class="cmd">WHERE</span> dr = <span class="fl">2</span><span class="out">;</span>  <span class="out">-- 2nd highest</span></div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Correlated subquery kya hai? Performance pe kya impact hota hai?</li>
+<li>CTE vs Subquery vs Temp Table — kab kya prefer karoge?</li>
+<li>RANK vs DENSE_RANK vs ROW_NUMBER — difference explain karo.</li>
+<li>LAG aur LEAD window functions kab use karte hain?</li>
+<li>Recursive CTE kya hai? Kab use karte hain?</li>
+<li>Department mein top 3 salary wale employees nikalo — query likho.</li>
+</ol></div>`},
+  {num:`07`,title:`Indexes — Performance Tuning`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">Indexes kya hote hain?</div><ul class="note-list">
+<li>Data structure jo data quickly dhundne mein help karta hai — book ka index jaisa</li>
+<li>Without index: O(n) full table scan | With index: O(log n) B-Tree search</li>
+<li><strong>Trade-off:</strong> Reads fast, Writes slow (index bhi update hota hai), Storage zyada</li>
+<li>MySQL mein InnoDB B+ Tree index use karta hai</li>
+</ul></div>
+<div class="card"><div class="card-title">Index Types</div>
+<div class="arch-row"><div class="arch-label">Primary Index</div><div class="arch-val">Primary Key pe automatic — Clustered index. Data physically is order mein store hota hai.</div></div>
+<div class="arch-row"><div class="arch-label">Unique Index</div><div class="arch-val">Duplicate values nahi ho sakte. UNIQUE constraint automatically create karta hai.</div></div>
+<div class="arch-row"><div class="arch-label">Composite Index</div><div class="arch-val">Multiple columns pe ek index. Column order matters! (a,b,c) — a, ab, abc ke liye kaam karta hai.</div></div>
+<div class="arch-row"><div class="arch-label">Covering Index</div><div class="arch-val">Query ke sab columns index mein hain — table lookup nahi hoga. Fastest reads.</div></div>
+<div class="arch-row"><div class="arch-label">Full-Text Index</div><div class="arch-val">Text search ke liye — MATCH() AGAINST() use karo. LIKE % se better.</div></div>
+<div class="arch-row"><div class="arch-label">Partial Index</div><div class="arch-val">Sirf kuch rows ka index — WHERE condition ke saath. Smaller, faster.</div></div>
+</div>
+<div class="card"><div class="card-title">Index Commands & EXPLAIN</div>
+<div class="cmd-block">
+<div><span class="cmt">-- Index create karo</span></div>
+<div><span class="cmd">CREATE INDEX</span> idx_salary <span class="cmd">ON</span> employees(salary)<span class="out">;</span></div>
+<div><span class="cmd">CREATE UNIQUE INDEX</span> idx_email <span class="cmd">ON</span> employees(email)<span class="out">;</span></div>
+<div><span class="cmd">CREATE INDEX</span> idx_dept_salary <span class="cmd">ON</span> employees(dept_id, salary)<span class="out">;</span>  <span class="out">-- composite</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- Index dekho</span></div>
+<div><span class="cmd">SHOW INDEX FROM</span> employees<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- EXPLAIN -- query execution plan dekho</span></div>
+<div><span class="cmd">EXPLAIN SELECT</span> * <span class="cmd">FROM</span> employees <span class="cmd">WHERE</span> salary > <span class="fl">50000</span><span class="out">;</span></div>
+<div><span class="cmt">-- type: ALL=bad, index=ok, range=good, ref=good, const=best</span></div>
+<div><span class="cmt">-- key: which index is being used</span></div>
+<div><span class="cmt">-- rows: estimated rows to scan (kam = better)</span></div>
+</div></div>
+<div class="card"><div class="card-title">Index Best Practices</div><ul class="note-list">
+<li><strong>Index karo:</strong> WHERE, JOIN, ORDER BY, GROUP BY columns</li>
+<li><strong>Index mat karo:</strong> Low cardinality columns (gender — sirf 2 values)</li>
+<li><strong>Leftmost prefix rule:</strong> Composite index (a,b,c) — sirf a, ab, abc work karta hai</li>
+<li><strong>Index selectivity:</strong> Unique values / total rows — 1.0 = perfect</li>
+<li><strong>Too many indexes:</strong> Write performance suffer karta hai</li>
+</ul>
+<div class="warn-box"><p><strong>Common mistake:</strong> Function use karna WHERE clause mein index bypass karta hai! <code>WHERE YEAR(created_at) = 2024</code> instead of <code>WHERE created_at BETWEEN "2024-01-01" AND "2024-12-31"</code></p></div>
+</div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Clustered vs Non-clustered index — kya difference hai?</li>
+<li>Composite index mein column order kyun matter karta hai?</li>
+<li>Covering index kya hai? Kaise banate hain?</li>
+<li>EXPLAIN output mein kya dekhte hain? type column ka matlab?</li>
+<li>Index hone ke bawajood query slow kyun ho sakti hai?</li>
+<li>Index kab nahi banana chahiye?</li>
+</ol></div>`},
+  {num:`08`,title:`MySQL Specific Features`,level:`Intermediate`,badge:`inter`,html:`
+<div class="card"><div class="card-title">MySQL Storage Engines</div>
+<div class="arch-row"><div class="arch-label">InnoDB</div><div class="arch-val">Default engine — ACID compliant, Foreign keys, Row-level locking, MVCC. Production ke liye.</div></div>
+<div class="arch-row"><div class="arch-label">MyISAM</div><div class="arch-val">Table-level locking, no FK support, faster reads, no transactions. Legacy only.</div></div>
+<div class="arch-row"><div class="arch-label">Memory</div><div class="arch-val">RAM mein store — ultra fast, volatile. Temporary tables ke liye.</div></div>
+<div class="arch-row"><div class="arch-label">Archive</div><div class="arch-val">Highly compressed, insert-only, no indexes. Log data store karne ke liye.</div></div>
+</div>
+<div class="card"><div class="card-title">Views</div>
+<div class="cmd-block">
+<div><span class="cmt">-- View create karo — virtual table</span></div>
+<div><span class="cmd">CREATE VIEW</span> active_employees <span class="cmd">AS</span></div>
+<div><span class="cmd">SELECT</span> id, name, email, salary</div>
+<div><span class="cmd">FROM</span> employees</div>
+<div><span class="cmd">WHERE</span> status = <span class="str">"active"</span><span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- View use karo table ki tarah</span></div>
+<div><span class="cmd">SELECT</span> * <span class="cmd">FROM</span> active_employees <span class="cmd">WHERE</span> salary > <span class="fl">50000</span><span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- Updatable view (simple views)</span></div>
+<div><span class="cmd">UPDATE</span> active_employees <span class="cmd">SET</span> salary = <span class="fl">55000</span> <span class="cmd">WHERE</span> id = <span class="fl">1</span><span class="out">;</span></div>
+</div></div>
+<div class="card"><div class="card-title">Stored Procedures & Functions</div>
+<div class="cmd-block">
+<div><span class="cmt">-- Stored Procedure</span></div>
+<div><span class="cmd">DELIMITER</span> //</div>
+<div><span class="cmd">CREATE PROCEDURE</span> get_dept_employees(IN dept_name <span class="fl">VARCHAR</span>(<span class="fl">50</span>))</div>
+<div><span class="cmd">BEGIN</span></div>
+<div>  <span class="cmd">SELECT</span> e.name, e.salary</div>
+<div>  <span class="cmd">FROM</span> employees e</div>
+<div>  <span class="cmd">JOIN</span> departments d <span class="cmd">ON</span> e.dept_id = d.id</div>
+<div>  <span class="cmd">WHERE</span> d.name = dept_name<span class="out">;</span></div>
+<div><span class="cmd">END</span> //</div>
+<div><span class="cmd">DELIMITER</span> <span class="out">;</span></div>
+<div><span class="cmd">CALL</span> get_dept_employees(<span class="str">"Engineering"</span>)<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- Trigger</span></div>
+<div><span class="cmd">CREATE TRIGGER</span> before_salary_update</div>
+<div><span class="cmd">BEFORE UPDATE ON</span> employees</div>
+<div><span class="cmd">FOR EACH ROW</span></div>
+<div><span class="cmd">BEGIN</span></div>
+<div>  <span class="cmd">IF</span> NEW.salary &lt; <span class="fl">0</span> <span class="cmd">THEN</span></div>
+<div>    <span class="cmd">SIGNAL SQLSTATE</span> <span class="str">"45000"</span> <span class="cmd">SET MESSAGE_TEXT</span> = <span class="str">"Salary negative nahi ho sakta"</span><span class="out">;</span></div>
+<div>  <span class="cmd">END IF</span><span class="out">;</span></div>
+<div><span class="cmd">END</span><span class="out">;</span></div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>InnoDB vs MyISAM — kab kya choose karoge?</li>
+<li>View aur Table mein kya difference hai? Updatable view kab hoti hai?</li>
+<li>Stored Procedure vs Function — kya difference hai?</li>
+<li>Triggers kab use karte hain? Kya side effects hote hain?</li>
+<li>MVCC (Multi-Version Concurrency Control) kya hai? InnoDB mein kaise kaam karta hai?</li>
+</ol></div>`},
+  {num:`09`,title:`Query Optimization`,level:`Advanced`,badge:`adv`,html:`
+<div class="card"><div class="card-title">Query Optimization Techniques</div><ul class="note-list">
+<li><strong>EXPLAIN ANALYZE:</strong> Actual execution stats — estimated vs actual rows</li>
+<li><strong>Avoid SELECT *:</strong> Sirf zaroori columns select karo</li>
+<li><strong>Index hints:</strong> <code>FORCE INDEX (idx_name)</code> — optimizer ko guide karo</li>
+<li><strong>Query cache:</strong> MySQL 8 mein removed — application-level cache use karo</li>
+<li><strong>Pagination:</strong> LIMIT/OFFSET large tables pe slow — keyset pagination better</li>
+</ul></div>
+<div class="card"><div class="card-title">Common Performance Anti-Patterns</div>
+<div class="cmd-block">
+<div><span class="cmt">-- BAD: Function in WHERE — index bypass!</span></div>
+<div><span class="cmd">WHERE</span> <span class="cmd">YEAR</span>(created_at) = <span class="fl">2024</span></div>
+<div><span class="cmt">-- GOOD: Range condition use karo</span></div>
+<div><span class="cmd">WHERE</span> created_at <span class="cmd">BETWEEN</span> <span class="str">"2024-01-01"</span> <span class="cmd">AND</span> <span class="str">"2024-12-31"</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- BAD: OR can prevent index use</span></div>
+<div><span class="cmd">WHERE</span> dept_id = <span class="fl">1</span> <span class="cmd">OR</span> dept_id = <span class="fl">2</span></div>
+<div><span class="cmt">-- GOOD: IN is better</span></div>
+<div><span class="cmd">WHERE</span> dept_id <span class="cmd">IN</span> (<span class="fl">1</span>, <span class="fl">2</span>)</div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- BAD: N+1 problem</span></div>
+<div><span class="cmt">-- Loop mein ek ek employee ki query — 1 + N queries!</span></div>
+<div><span class="cmt">-- GOOD: Ek JOIN query mein sab lo</span></div>
+<div><span class="cmd">SELECT</span> e.*, d.name <span class="cmd">FROM</span> employees e <span class="cmd">JOIN</span> departments d <span class="cmd">ON</span> e.dept_id = d.id<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- BAD: OFFSET pagination large tables pe</span></div>
+<div><span class="cmd">SELECT</span> * <span class="cmd">FROM</span> employees <span class="cmd">ORDER BY</span> id <span class="cmd">LIMIT</span> <span class="fl">10</span> <span class="cmd">OFFSET</span> <span class="fl">100000</span><span class="out">;</span></div>
+<div><span class="cmt">-- GOOD: Keyset pagination</span></div>
+<div><span class="cmd">SELECT</span> * <span class="cmd">FROM</span> employees <span class="cmd">WHERE</span> id > <span class="fl">100000</span> <span class="cmd">ORDER BY</span> id <span class="cmd">LIMIT</span> <span class="fl">10</span><span class="out">;</span></div>
+</div></div>
+<div class="card"><div class="card-title">MySQL Configuration Tuning</div><ul class="note-list">
+<li><strong>innodb_buffer_pool_size:</strong> RAM ka 70-80% — most important setting</li>
+<li><strong>max_connections:</strong> Concurrent connections limit — connection pool size ke hisaab se</li>
+<li><strong>slow_query_log:</strong> Enable karo — slow queries log karo aur optimize karo</li>
+<li><strong>query_cache:</strong> MySQL 8 mein deprecated — Redis use karo</li>
+<li><strong>innodb_flush_log_at_trx_commit:</strong> 1=safe, 2=faster (slight data loss risk)</li>
+</ul></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>EXPLAIN output interpret karo — kya dekhte hain?</li>
+<li>Slow query kaise debug karte hain? Step-by-step approach?</li>
+<li>Keyset pagination vs OFFSET pagination — kab kya?</li>
+<li>N+1 query problem kya hai? ORM mein kaise detect aur fix karte hain?</li>
+<li>innodb_buffer_pool_size tune kaise karte hain?</li>
+</ol></div>`},
+  {num:`10`,title:`Replication & Scaling`,level:`Advanced`,badge:`adv`,html:`
+<div class="card"><div class="card-title">MySQL Replication</div><ul class="note-list">
+<li><strong>Master-Slave (Primary-Replica):</strong> Master writes, replicas reads serve karte hain</li>
+<li><strong>Binary Log (binlog):</strong> Master sab changes log karta hai — replica apply karta hai</li>
+<li><strong>Async Replication:</strong> Default — fast but replica slightly behind ho sakta hai</li>
+<li><strong>Semi-sync:</strong> At least ek replica confirm kare — data loss risk kam</li>
+<li><strong>GTID:</strong> Global Transaction IDs — failover easy, replication reliable</li>
+</ul></div>
+<div class="card"><div class="card-title">Replication Setup Basics</div>
+<div class="cmd-block">
+<div><span class="cmt">-- Master pe binary log enable karo (my.cnf)</span></div>
+<div>log_bin = mysql-bin</div>
+<div>server_id = <span class="fl">1</span></div>
+<div>binlog_format = ROW</div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- Replica pe</span></div>
+<div>server_id = <span class="fl">2</span></div>
+<div>relay_log = relay-bin</div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- Replica configure karo</span></div>
+<div><span class="cmd">CHANGE MASTER TO</span></div>
+<div>  MASTER_HOST=<span class="str">"master-ip"</span>,</div>
+<div>  MASTER_USER=<span class="str">"repl_user"</span>,</div>
+<div>  MASTER_PASSWORD=<span class="str">"password"</span>,</div>
+<div>  MASTER_AUTO_POSITION=<span class="fl">1</span><span class="out">;</span>  <span class="out">-- GTID based</span></div>
+<div><span class="cmd">START SLAVE</span><span class="out">;</span></div>
+<div><span class="cmd">SHOW SLAVE STATUS</span>\\G  <span class="out">-- Seconds_Behind_Master check karo</span></div>
+</div></div>
+<div class="card"><div class="card-title">Partitioning & Sharding</div>
+<div class="arch-row"><div class="arch-label">RANGE Partition</div><div class="arch-val">Date range ya value range — logs, time-series data ke liye. Old partitions easy delete.</div></div>
+<div class="arch-row"><div class="arch-label">HASH Partition</div><div class="arch-val">Hash function se evenly distribute karo. Load balance ke liye.</div></div>
+<div class="arch-row"><div class="arch-label">LIST Partition</div><div class="arch-val">Specific values ke liye — region = "North", "South", "East".</div></div>
+<div class="arch-row"><div class="arch-label">Horizontal Sharding</div><div class="arch-val">Data alag servers pe — User A-M on DB1, N-Z on DB2. Application level handle karna padta hai.</div></div>
+<div class="cmd-block">
+<div><span class="cmt">-- Range partitioning example</span></div>
+<div><span class="cmd">CREATE TABLE</span> orders (</div>
+<div>  id <span class="fl">INT</span>, order_date <span class="fl">DATE</span>, amount <span class="fl">DECIMAL</span>(<span class="fl">10,2</span>)</div>
+<div>) <span class="cmd">PARTITION BY RANGE</span> (<span class="cmd">YEAR</span>(order_date)) (</div>
+<div>  <span class="cmd">PARTITION</span> p2022 <span class="cmd">VALUES LESS THAN</span> (<span class="fl">2023</span>),</div>
+<div>  <span class="cmd">PARTITION</span> p2023 <span class="cmd">VALUES LESS THAN</span> (<span class="fl">2024</span>),</div>
+<div>  <span class="cmd">PARTITION</span> p2024 <span class="cmd">VALUES LESS THAN</span> (<span class="fl">2025</span>)</div>
+<div>)<span class="out">;</span></div>
+</div></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>MySQL replication kaise kaam karta hai? Lag kaise handle karoge?</li>
+<li>Master fail ho gaye — failover process kya hoga?</li>
+<li>Table partitioning vs Sharding — kya difference hai?</li>
+<li>Replication lag monitoring kaise karoge?</li>
+<li>Read replicas aur write master ke beech consistency kaise ensure karoge?</li>
+</ol></div>`},
+  {num:`11`,title:`Deadlocks & Locking`,level:`Advanced`,badge:`adv`,html:`
+<div class="card"><div class="card-title">Locks in MySQL</div>
+<div class="arch-row"><div class="arch-label">Shared Lock (S)</div><div class="arch-val">Read lock — multiple transactions ek saath read kar sakte hain. <code>SELECT ... LOCK IN SHARE MODE</code></div></div>
+<div class="arch-row"><div class="arch-label">Exclusive Lock (X)</div><div class="arch-val">Write lock — sirf ek transaction write kar sakta hai. <code>SELECT ... FOR UPDATE</code></div></div>
+<div class="arch-row"><div class="arch-label">Row-level Lock</div><div class="arch-val">InnoDB — sirf specific rows lock hoti hain. High concurrency.</div></div>
+<div class="arch-row"><div class="arch-label">Table-level Lock</div><div class="arch-val">MyISAM — poori table lock. Low concurrency.</div></div>
+<div class="arch-row"><div class="arch-label">Gap Lock</div><div class="arch-val">Index gap lock — phantom reads rokne ke liye. Repeatable Read mein.</div></div>
+</div>
+<div class="card"><div class="card-title">Deadlocks</div><ul class="note-list">
+<li>Do transactions ek dusre ka wait kar rahein — circular dependency</li>
+<li>T1 locks row A, T2 locks row B, T1 wants B, T2 wants A — deadlock!</li>
+<li>MySQL automatically detect karta hai aur victim transaction rollback karta hai</li>
+</ul>
+<div class="cmd-block">
+<div><span class="cmt">-- Deadlock detect karo</span></div>
+<div><span class="cmd">SHOW ENGINE INNODB STATUS</span>\\G</div>
+<div><span class="cmt">-- LATEST DETECTED DEADLOCK section dekho</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- Current locks dekho</span></div>
+<div><span class="cmd">SELECT</span> * <span class="cmd">FROM</span> information_schema.innodb_locks<span class="out">;</span></div>
+<div><span class="cmd">SELECT</span> * <span class="cmd">FROM</span> information_schema.innodb_lock_waits<span class="out">;</span></div>
+</div></div>
+<div class="card"><div class="card-title">Deadlock Prevention</div><ul class="note-list">
+<li><strong>Same order:</strong> Hamesha same order mein tables/rows access karo</li>
+<li><strong>Short transactions:</strong> Transactions chhote rakho — kam time locks hold karein</li>
+<li><strong>Low isolation:</strong> Agar possible ho toh lower isolation level use karo</li>
+<li><strong>Index properly:</strong> Full table scans zyada rows lock karte hain</li>
+<li><strong>Retry logic:</strong> Application mein deadlock retry implement karo</li>
+</ul></div>
+<div class="q-section"><div class="q-title">Interview Questions</div><ol class="q-list">
+<li>Deadlock kya hota hai? Example se explain karo.</li>
+<li>MySQL deadlock ko kaise detect aur resolve karta hai?</li>
+<li>Deadlocks prevent karne ke strategies kya hain?</li>
+<li>SELECT FOR UPDATE kab use karte hain? Risk kya hai?</li>
+<li>Optimistic locking vs Pessimistic locking — kab kya?</li>
+</ol></div>`},
+  {num:`12`,title:`MySQL Interview Prep`,level:`Advanced`,badge:`adv`,html:`
+<div class="card"><div class="card-title">Most Common Interview Queries</div>
+<div class="cmd-block">
+<div><span class="cmt">-- 1. Second highest salary</span></div>
+<div><span class="cmd">SELECT MAX</span>(salary) <span class="cmd">FROM</span> employees <span class="cmd">WHERE</span> salary &lt; (<span class="cmd">SELECT MAX</span>(salary) <span class="cmd">FROM</span> employees)<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- 2. Duplicate emails find karo</span></div>
+<div><span class="cmd">SELECT</span> email, <span class="cmd">COUNT</span>(*) cnt <span class="cmd">FROM</span> employees <span class="cmd">GROUP BY</span> email <span class="cmd">HAVING</span> cnt > <span class="fl">1</span><span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- 3. Employees without department</span></div>
+<div><span class="cmd">SELECT</span> e.* <span class="cmd">FROM</span> employees e <span class="cmd">LEFT JOIN</span> departments d <span class="cmd">ON</span> e.dept_id = d.id <span class="cmd">WHERE</span> d.id <span class="cmd">IS NULL</span><span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- 4. Department wise highest salary</span></div>
+<div><span class="cmd">SELECT</span> dept_id, <span class="cmd">MAX</span>(salary) max_sal <span class="cmd">FROM</span> employees <span class="cmd">GROUP BY</span> dept_id<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- 5. Employees with salary above dept average</span></div>
+<div><span class="cmd">SELECT</span> e.name, e.salary, e.dept_id <span class="cmd">FROM</span> employees e</div>
+<div><span class="cmd">JOIN</span> (<span class="cmd">SELECT</span> dept_id, <span class="cmd">AVG</span>(salary) avg_sal <span class="cmd">FROM</span> employees <span class="cmd">GROUP BY</span> dept_id) d</div>
+<div><span class="cmd">ON</span> e.dept_id = d.dept_id <span class="cmd">WHERE</span> e.salary > d.avg_sal<span class="out">;</span></div>
+<div>&nbsp;</div>
+<div><span class="cmt">-- 6. Consecutive duplicate rows find karo (using LAG)</span></div>
+<div><span class="cmd">SELECT DISTINCT</span> num <span class="cmd">FROM</span> (</div>
+<div>  <span class="cmd">SELECT</span> num,</div>
+<div>    <span class="cmd">LAG</span>(num) <span class="cmd">OVER</span> (<span class="cmd">ORDER BY</span> id) prev,</div>
+<div>    <span class="cmd">LEAD</span>(num) <span class="cmd">OVER</span> (<span class="cmd">ORDER BY</span> id) nxt</div>
+<div>  <span class="cmd">FROM</span> logs</div>
+<div>) t <span class="cmd">WHERE</span> num = prev <span class="cmd">AND</span> num = nxt<span class="out">;</span></div>
+</div></div>
+<div class="card"><div class="card-title">Quick Revision — Important Concepts</div>
+<div class="arch-row"><div class="arch-label">UNION vs UNION ALL</div><div class="arch-val">UNION = duplicates remove karo (slow) | UNION ALL = sab rakho (fast). Use UNION ALL jab duplicates nahi honge.</div></div>
+<div class="arch-row"><div class="arch-label">COALESCE vs IFNULL</div><div class="arch-val">COALESCE(a,b,c) = pehla non-null value. IFNULL(a,b) = sirf 2 arguments. COALESCE prefer karo.</div></div>
+<div class="arch-row"><div class="arch-label">EXISTS vs IN</div><div class="arch-val">EXISTS = subquery row milte hi stop (fast for large). IN = sab check karo. Large subqueries mein EXISTS better.</div></div>
+<div class="arch-row"><div class="arch-label">CHAR vs VARCHAR</div><div class="arch-val">CHAR = fixed length (padded), fast. VARCHAR = variable length, space efficient. Fixed size ke liye CHAR.</div></div>
+<div class="arch-row"><div class="arch-label">MyISAM vs InnoDB</div><div class="arch-val">InnoDB = transactions, FK, row-lock. MyISAM = no transactions, table-lock, legacy.</div></div>
+</div>
+<div class="card"><div class="card-title">Resources</div>
+<div class="chips">
+<span class="chip">📘 MySQL Official Docs</span>
+<span class="chip">🎮 LeetCode SQL Problems</span>
+<span class="chip">📖 SQL Zoo</span>
+<span class="chip">🎥 Techno TRG YouTube</span>
+<span class="chip">📗 HackerRank SQL</span>
+<span class="chip">📝 Mode Analytics SQL Tutorial</span>
+</div></div>
+<div class="q-section"><div class="q-title">Final Interview Questions</div><ol class="q-list">
+<li>UNION vs JOIN — kab kya use karoge?</li>
+<li>Correlated subquery vs EXISTS — performance comparison karo.</li>
+<li>Database design karo ek e-commerce app ke liye — tables aur relationships.</li>
+<li>Million rows table ko efficiently query karne ki strategy kya hogi?</li>
+<li>MySQL database ko production mein secure kaise karte hain?</li>
+<li>Online schema migration bina downtime ke kaise karte hain?</li>
+</ol></div>`}
+];
+
+COURSES.push({
+  id:"mysql",
+  icon:"🗄️",
+  title:"MySQL & DBMS",
+  desc:"Database fundamentals, SQL queries, normalization, indexes, optimization aur MySQL internals",
+  count:12,
+  accent:"#f97316",
+  accentBg:"rgba(249,115,22,0.1)",
+  accentTabBg:"rgba(249,115,22,0.15)",
+  accentBorder:"rgba(249,115,22,0.3)",
+  accentRowBg:"rgba(249,115,22,0.1)",
+  accentDim:"rgba(249,115,22,0.25)",
+  tabLabels:["DBMS Basics","ACID","Normalization","DDL & DML","SELECT & Joins","Subqueries","Indexes","MySQL Features","Query Optim","Replication","Deadlocks","Interview Prep"]
 });
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
